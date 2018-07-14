@@ -1,0 +1,388 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title>Gerenciador de websites</title>
+	<style type="text/css">
+	<!--
+		@import url("css/admin.css");
+	-->
+	</style>
+	<script language="JavaScript" type="text/javascript" src="javascript/defaultl.js"></script>
+	<script language="JavaScript" type="text/javascript" src="javascript/jquery.js"></script>
+	<script language="JavaScript" type="text/javascript" src="javascript/mask.js"></script>
+	<script language="JavaScript" type="text/javascript">
+		(function($) {
+			$(function() {
+				$.mask.addPlaceholder('~','[+-]');		
+			});
+		}) (jQuery);
+	</script>
+</head>
+<body>
+<table width="100%" style="height:100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center" valign="top">
+		<table width="90%" border="0" cellpadding="0" cellspacing="0" class="table">
+			<tr valign="middle">
+			<td height="28" colspan="5" class="topo"><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="font-weight:bold; color:#FFF;">Administração :: Konrad</td>
+                <td align="right"><a href="." style="color:#FFF">Menu principal</a></td>
+              </tr>
+            </table></td>
+		  </tr>
+		  <tr>
+			<td width="15" height="10"></td>
+			<td width="498"></td>
+			<td width="10"></td>
+		  </tr>
+		  <tr>
+			<td height="10"></td>
+			<td valign="top" class="{{if $error}}error{{else}}display{{/if}}">{{if $error}}<img src="images/alert.gif" align="baseline">&nbsp;{{/if}}{{$error|default:$display}}
+			</td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td height="13"></td>
+			<td></td>
+			<td></td>
+		  </tr>
+		{{if !$smarty.get.option}}
+		  <tr>
+			<td height="92"></td>
+			<td valign="top">
+			{{if !$smarty.get.curso_code}}
+			<fieldset>
+			<legend><img src="images/thumb_mod_cursos.gif" align="middle">&nbsp;Adicionar novo workshop&nbsp;</legend>
+			<form action="" method="post" name="add_curso">
+			<input type="hidden" name="salvar" value="1">
+			  <table width="100%" border="0" cellpadding="1" cellspacing="1" class="form">
+				<tr>
+				  <td width="100">Nome do workshop:</td>
+				  <td><input name="nome_curso" type="text" size="60" maxlength="100" value="{{$smarty.post.nome_curso}}"></td>
+				 </tr>
+				<tr>
+				  <td width="100">Ordem:</td>
+				  <td><input name="ordem" type="text" size="10" maxlength="2" value="{{$smarty.post.ordem}}"></td>
+				 </tr>
+				<tr>
+				  <td width="100" valign="top">Programa:</td>
+				  <td><textarea rows="8" cols="60" name="programa" style="width:90%;">{{$smarty.post.programa}}</textarea></td>
+				 </tr>
+				<tr>
+				  <td width="100" valign="top">Objetivo:</td>
+				  <td><textarea rows="4" cols="60" name="objetivo" style="width:90%;">{{$smarty.post.objetivo}}</textarea></td>
+				 </tr>
+				<tr>
+				  <td width="100" valign="top">Metodologia:</td>
+				  <td><textarea rows="4" cols="60" name="metodologia" style="width:90%;">{{$smarty.post.metodologia}}</textarea></td>
+				 </tr>
+				<tr>
+				  <td width="100" valign="top">Depoimentos:</td>
+				  <td><textarea rows="4" cols="60" name="depoimentos" style="width:90%;">{{$smarty.post.depoimentos}}</textarea></td>
+				 </tr>
+				<tr>
+				  <td width="100">Público-alvo:</td>
+				  <td><input name="publico_alvo" type="text" size="60" maxlength="100" value="{{$smarty.post.publico_alvo}}"></td>
+				 </tr>
+				<tr>
+				  <td width="100">Carga horária:</td>
+				  <td><input name="carga_horaria" type="text" size="60" maxlength="100" value="{{$smarty.post.carga_horaria}}"></td>
+				 </tr>
+				 <tr><td colspan="2">&nbsp;</td></tr>
+				<tr>
+				  <td width="100">Palestrante:</td>
+				  <td><input name="instrutor" type="text" size="60" maxlength="100" value="{{$smarty.post.instrutor}}"></td>
+				 </tr>
+				<tr>
+				  <td width="100" valign="top">Minicurrículo:</td>
+				  <td><textarea rows="4" cols="60" name="minicurriculo" style="width:90%;">{{$smarty.post.minicurriculo}}</textarea></td>
+				 </tr>
+				 <tr><td colspan="2">&nbsp;</td></tr>
+				<tr>
+				  <td width="100">Investimento:</td>
+				  <td><input name="investimento" type="text" size="60" maxlength="100" value="{{$smarty.post.investimento}}"></td>
+				 </tr>
+				<tr>
+				  <td width="100" valign="top">Incluído:</td>
+				  <td><textarea rows="4" cols="60" name="incluido" style="width:90%;">{{$smarty.post.incluido}}</textarea></td>
+				 </tr>
+				 <tr><td colspan="2">&nbsp;</td></tr>
+				<tr>
+				  <td width="100" valign="top">Workshop:</td>
+				  <td><textarea rows="4" cols="60" name="workshop" style="width:90%;">{{$smarty.post.workshop}}</textarea></td>
+				 </tr>
+				 <tr>
+					 <td>&nbsp;</td>
+				 	<td><input type="submit" value="Salvar" onClick="submit(); this.value='Processando...'; this.disabled=true;" {{if !$permissions.usrinsert}}disabled{{/if}}></td>
+				</tr>
+			  </table>
+		    </form>
+			</fieldset>
+			{{else}}
+			<fieldset>
+			<legend><img src="images/thumb_mod_cursos.gif" align="middle">&nbsp;Editar o workshop&nbsp;</legend>
+			<form action="{{"?page=`$smarty.get.page`&curso_code=`$smarty.get.curso_code`"|secureurl}}" method="post" name="update_curso">
+			<input type="hidden" name="update" value="1">
+			  <table width="100%" border="0" cellpadding="1" cellspacing="1" class="form">
+				<tr>
+				  <td width="100">Nome do workshop:</td>
+				  <td><input name="nome_curso" type="text" size="60" maxlength="100" value="{{$smarty.post.nome_curso}}"></td>
+				 </tr>
+				<tr>
+				  <td width="100">Ordem:</td>
+				  <td><input name="ordem" type="text" size="10" maxlength="2" value="{{$smarty.post.ordem}}"></td>
+				 </tr>
+				<tr>
+				  <td width="100" valign="top">Programa:</td>
+				  <td><textarea rows="8" cols="60" name="programa" style="width:90%;">{{$smarty.post.programa}}</textarea></td>
+				 </tr>
+				<tr>
+				  <td width="100" valign="top">Objetivo:</td>
+				  <td><textarea rows="4" cols="60" name="objetivo" style="width:90%;">{{$smarty.post.objetivo}}</textarea></td>
+				 </tr>
+				<tr>
+				  <td width="100" valign="top">Metodologia:</td>
+				  <td><textarea rows="4" cols="60" name="metodologia" style="width:90%;">{{$smarty.post.metodologia}}</textarea></td>
+				 </tr>
+				<tr>
+				  <td width="100" valign="top">Depoimentos:</td>
+				  <td><textarea rows="4" cols="60" name="depoimentos" style="width:90%;">{{$smarty.post.depoimentos}}</textarea></td>
+				 </tr>
+				<tr>
+				  <td width="100">Público-alvo:</td>
+				  <td><input name="publico_alvo" type="text" size="60" maxlength="100" value="{{$smarty.post.publico_alvo}}"></td>
+				 </tr>
+				<tr>
+				  <td width="100">Carga horária:</td>
+				  <td><input name="carga_horaria" type="text" size="60" maxlength="100" value="{{$smarty.post.carga_horaria}}"></td>
+				 </tr>
+				 <tr><td colspan="2">&nbsp;</td></tr>
+				<tr>
+				  <td width="100">Palestrante:</td>
+				  <td><input name="instrutor" type="text" size="60" maxlength="100" value="{{$smarty.post.instrutor}}"></td>
+				 </tr>
+				<tr>
+				  <td width="100" valign="top">Minicurrículo:</td>
+				  <td><textarea rows="4" cols="60" name="minicurriculo" style="width:90%;">{{$smarty.post.minicurriculo}}</textarea></td>
+				 </tr>
+				 <tr><td colspan="2">&nbsp;</td></tr>
+				<tr>
+				  <td width="100">Investimento:</td>
+				  <td><input name="investimento" type="text" size="60" maxlength="100" value="{{$smarty.post.investimento}}"></td>
+				 </tr>
+				<tr>
+				  <td width="100" valign="top">Incluído:</td>
+				  <td><textarea rows="4" cols="60" name="incluido" style="width:90%;">{{$smarty.post.incluido}}</textarea></td>
+				</tr>
+				 <tr><td colspan="2">&nbsp;</td></tr>
+				<tr>
+				  <td width="100" valign="top">Workshop:</td>
+				  <td><textarea rows="4" cols="60" name="workshop" style="width:90%;">{{$smarty.post.workshop}}</textarea></td>
+				 </tr>
+				<tr>
+				  <td>&nbsp;</td>
+				  <td>
+				  <input type="submit" value="Salvar" onClick="submit(); this.value='Processando...'; this.disabled=true;" {{if !$permissions.usrinsert}}disabled{{/if}}>
+				  <input type="button" value="Sair" onClick="redirect('{{"?page=`$smarty.get.page`"|secureurl}}')">
+				  </td>
+				</tr>
+			  </table>
+		    </form>
+			</fieldset>
+			{{/if}}
+			</td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td height="25"></td>
+			<td>&nbsp;</td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td height="95"></td>
+			<td valign="top">
+			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="form">
+				<tr>
+				  <td width="100%" height="86" valign="top">
+					<fieldset>
+                  <legend>Workshops&nbsp;</legend>
+					<form name="cursos_list" method="post" action="">
+					<input type="hidden" name="curso_code">
+                    <table border="0" cellpadding="0" cellspacing="0" class="grid">
+                      <tr class="ordenado"> 
+                        <td width="80">&nbsp;C&oacute;digo</td>
+                        <td>Curso</td>
+						<td width="25">&nbsp;</td>
+                        <td width="20">&nbsp;</td>
+                      </tr>
+                      <tr><td colspan="4">&nbsp;</td></tr>
+                      {{section name=i loop=$cursos}}
+                      <tr onMouseOver="mOvr(this,'#EFEFEF')" onMouseOut="mOut(this,'{{if $cursos[i].code == $smarty.get.curso_code}}#DBF1FD{{else}}#FFFFFF{{/if}}')" {{if $cursos[i].code == $smarty.get.curso_code}}bgcolor="#DBF1FD"{{/if}}> 
+                        <td onClick="redirect('{{"?page=`$smarty.get.page`&curso_code=`$cursos[i].code`"|secureurl}}')">&nbsp;{{$cursos[i].code|zerofill:5}}</td>
+                        <td onClick="redirect('{{"?page=`$smarty.get.page`&curso_code=`$cursos[i].code`"|secureurl}}')">&nbsp;{{$cursos[i].nome_curso|truncate:80}}</td>
+						<td><img src="images/folder_new.gif" alt="" onClick="redirect('{{"?page=`$smarty.get.page`&curso_code=`$cursos[i].code`&option=1"|secureurl}}');"></td>
+                        <td><input name="delete" type="image" onClick="if(!confirm('Deseja remover o curso ({{$cursos[i].nome_curso|addslashes}}) e suas turmas?')){ return false} else{curso_code.value='{{$cursos[i].code}}'};" src="images/delete_{{if $cursos[i].code != $smarty.get.curso_code && $permissions.usrdelete}}true{{else}}false{{/if}}.gif" style="width:15px; height:16px;" {{if $cursos[i].code == $smarty.get.curso_code || !$permissions.usrdelete}}disabled{{/if}}></td>
+                      </tr>
+                      {{sectionelse}}
+                      <tr> 
+                        <td colspan="4" align="center">Nenhum workshop cadastrado</td>
+                      </tr>
+                      {{/section}}
+                      <tr><td colspan="4">&nbsp;</td></tr>
+                    </table>
+					</form>
+					</fieldset></td>
+				</tr>
+			  </table></td>
+			<td></td>
+		  </tr>
+		  {{else}}
+		  <tr>
+			<td height="92"></td>
+			<td valign="top">
+			{{if !$smarty.get.turma_code}}
+			<fieldset>
+			<legend><img src="images/thumb_mod_cursos.gif" align="middle">&nbsp;Adicionar nova turma&nbsp;</legend>
+			<form action="{{"?page=`$smarty.get.page`&curso_code=`$smarty.get.curso_code`&option=1"|secureurl}}" method="post" name="add_turma">
+			<input type="hidden" name="salvar" value="1">
+			<input type="hidden" name="option" value="1">
+			  <table width="100%" border="0" cellpadding="1" cellspacing="1" class="form">
+			    <tr>
+				  <td width="100">Cidade:</td>
+				  <td><input name="cidade" type="text" size="40" maxlength="80" value="{{$smarty.post.cidade}}">					
+				</tr>
+			    <tr>
+				  <td width="100">Local:</td>
+				  <td><input name="local" type="text" size="40" maxlength="100" value="{{$smarty.post.local}}">					
+				</tr>
+			    <tr>
+				  <td width="100">Horário:</td>
+				  <td><input name="horario" type="text" size="40" maxlength="50" value="{{$smarty.post.horario}}">					
+				</tr>
+			    <tr>
+				  <td width="100">Localização:</td>
+				  <td><input name="localizacao" type="text" size="40" maxlength="100" value="{{$smarty.post.localizacao}}">					
+				</tr>
+			    <tr>
+				  <td width="100">Data:</td>
+				  <td><input name="data" type="text" size="40" maxlength="10" value="{{$smarty.post.data}}" id="dt_inicio">					
+				</tr>				
+				<tr>
+				  <td>&nbsp;</td>
+				  <td><input type="submit" value="Salvar" onClick="submit(); this.value='Processando...'; this.disabled=true;" {{if !$permissions.usrinsert}}disabled{{/if}}></td>
+				</tr>
+			  </table>
+		    </form>
+			</fieldset>
+			{{else}}
+			<fieldset>
+			<legend><img src="images/thumb_mod_cursos.gif" align="middle">&nbsp;Editar a turma&nbsp;</legend>
+			<form action="{{"?page=`$smarty.get.page`&curso_code=`$smarty.get.curso_code`&turma_code=`$smarty.get.turma_code`&option=1"|secureurl}}" method="post" name="update_turma">
+			<input type="hidden" name="update" value="1">
+			  <table width="100%" border="0" cellpadding="1" cellspacing="1" class="form">
+			    <tr>
+				  <td width="100">Cidade:</td>
+				  <td><input name="cidade" type="text" size="40" maxlength="80" value="{{$smarty.post.cidade}}">					
+				</tr>
+			    <tr>
+				  <td width="100">Local:</td>
+				  <td><input name="local" type="text" size="40" maxlength="100" value="{{$smarty.post.local}}">					
+				</tr>
+			    <tr>
+				  <td width="100">Horário:</td>
+				  <td><input name="horario" type="text" size="40" maxlength="50" value="{{$smarty.post.horario}}">					
+				</tr>
+			    <tr>
+				  <td width="100">Localização:</td>
+				  <td><input name="localizacao" type="text" size="40" maxlength="100" value="{{$smarty.post.localizacao}}">					
+				</tr>
+                <tr>
+                  <td width="100">Data:</td>
+                  <td><input name="data" type="text" size="40" maxlength="10" value="{{$smarty.post.data}}" id="dt_inicio">                 
+                </tr>   
+			    <tr>
+				  <td width="100">Confirmada:</td>
+				  <td><input name="confirmada" type="checkbox" {{if $smarty.post.confirmada}}checked{{/if}} value="1">					
+				</tr>				
+				<tr>
+				  <td>&nbsp;</td>
+				  <td>
+				  <input type="submit" value="Salvar" onClick="submit(); this.value='Processando...'; this.disabled=true;" {{if !$permissions.usrinsert}}disabled{{/if}}>
+				  <input type="button" value="Sair" onClick="redirect('{{"?page=`$smarty.get.page`&curso_code=`$smarty.get.curso_code`&option=1"|secureurl}}')">
+				  </td>
+				</tr>
+			  </table>
+		    </form>
+			</fieldset>
+			{{/if}}
+			</td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td height="25"></td>
+			<td>&nbsp;</td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td height="95"></td>
+			<td valign="top">
+			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="form">
+				<tr>
+				  <td width="100%" height="86" valign="top">
+					<fieldset>
+                  <legend>Turmas&nbsp;</legend>
+					<form name="turmas_list" method="post" action="">
+					<input type="hidden" name="turma_code">
+					<input type="hidden" name="option">
+                    <table border="0" cellpadding="0" cellspacing="0" class="grid">
+                      <tr class="ordenado"> 
+                        <td>&nbsp;C&oacute;digo</td>
+                        <td>Cidade</td>
+                        <td>Local</td>
+                        <td width="20">&nbsp;</td>
+                      </tr>
+                      <tr><td colspan="4">&nbsp;</td></tr>
+                      {{section name=i loop=$turmas}}
+                      <tr onMouseOver="mOvr(this,'#EFEFEF')" onMouseOut="mOut(this,'{{if $turmas[i].code == $smarty.get.turma_code}}#DBF1FD{{else}}#FFFFFF{{/if}}')" {{if $turmas[i].code == $smarty.get.turma_code}}bgcolor="#DBF1FD"{{/if}}> 
+                        <td onClick="redirect('{{"?page=`$smarty.get.page`&curso_code=`$smarty.get.curso_code`&turma_code=`$turmas[i].code`&option=1"|secureurl}}')">&nbsp;{{$turmas[i].code|zerofill:5}}</td>
+                        <td onClick="redirect('{{"?page=`$smarty.get.page`&curso_code=`$smarty.get.curso_code`&turma_code=`$turmas[i].code`&option=1"|secureurl}}')">&nbsp;{{$turmas[i].cidade}}</td>
+                        <td onClick="redirect('{{"?page=`$smarty.get.page`&curso_code=`$smarty.get.curso_code`&turma_code=`$turmas[i].code`&option=1"|secureurl}}')">&nbsp;{{$turmas[i].local}}</td>
+                        <td><input name="delete" type="image" onClick="if(!confirm('Deseja remover a turma ({{$turmas[i].code|zerofill:5}}) e suas turmas?')){ return false} else{turma_code.value='{{$turmas[i].code}}'};" src="images/delete_{{if $turmas[i].code != $smarty.get.turma_code && $permissions.usrdelete}}true{{else}}false{{/if}}.gif" style="width:15px; height:16px;" {{if $turmas[i].code == $smarty.get.turma_code || !$permissions.usrdelete}}disabled{{/if}}></td>
+                      </tr>
+                      {{sectionelse}}
+                      <tr> 
+                        <td colspan="4" align="center">Nenhuma turma cadastrada</td>
+                      </tr>
+                      {{/section}}
+					<tr><td colspan="4">&nbsp;</td></tr>
+                    </table>
+					</form>
+					</fieldset></td>
+				</tr>
+			  </table></td>
+			<td></td>
+		  </tr>
+		  {{/if}}
+		  <tr>
+			<td height="23"></td>
+			<td align="right">&nbsp;</td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td height="23"></td>
+			<td align="right"><a href="{{if $smarty.get.option}}?page={{$smarty.get.page}}{{else}}.{{/if}}"><img src="images/back.gif" alt="Voltar" width="32" height="32" border="0"></a></td>
+			<td></td>
+		  </tr>
+		  <tr>
+			
+          <td height="57" colspan="5" valign="middle" class="copyright">
+				Resolu&ccedil;&atilde;o m&iacute;nima de 800x600 &copy; Copyright {{ $smarty.now|date_format:'%Y'}}, Konrad<br>
+				<a href="http://www.gotz.com.br" target="_blank">Http://www.gotz.com.br</a>
+			</td>
+		  </tr>
+		</table>	</td>
+  </tr>
+</table>
+</body>
+</html>

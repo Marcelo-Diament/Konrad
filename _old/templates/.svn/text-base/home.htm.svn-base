@@ -1,0 +1,105 @@
+<div id="menu-home"> 
+    <table style="width:750px;" border="0" cellpadding="0" cellspacing="0">
+      <tr> 
+        <td><a href="{{$rootfolder}}/conteudo/servicos/treinamento/"><img src="{{$rootfolder}}/media/images/btn_treinamento.jpg" alt="Treinamento" title="Treinamento"/></a></td>
+        <td><a href="{{$rootfolder}}/conteudo/servicos/consultoria/"><img src="{{$rootfolder}}/media/images/btn_consultoria.jpg" alt="Consultoria" title="Consultoria"/></a></td>
+        <td><a href="{{$rootfolder}}/conteudo/servicos/auditoria/"><img src="{{$rootfolder}}/media/images/btn_auditoria.jpg" alt="Auditoria" title="Auditoria"/></a></td>
+        <td><a href="{{$rootfolder}}/conteudo/servicos/software/"><img src="{{$rootfolder}}/media/images/btn_software.jpg" alt="Software" title="Software"/></a></td>
+      </tr>
+    </table>
+</div>
+
+<div id="content-home">
+  <table style="width:740px;" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td style="width:360px;" valign="top"> 
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td style="width:360px;"><h3>Seja bem vindo a Konrad</h3>
+              Porto Alegre, {{$data}} 
+              <p>{{$content}}</p></td>
+          </tr>
+          <tr> 
+            <td align="right"><a href="{{$rootfolder}}/a-empresa/">Ver mais</a></td>
+          </tr>
+          <tr> 
+            <td style="height:20px;"><img src="{{$rootfolder}}/media/images/hr_home.gif" alt=""/></td>
+          </tr>
+          <tr> 
+            <td><h3>Artigos</h3></td>
+          </tr>
+          <tr> 
+            <td>&nbsp;</td>
+          </tr>
+          <tr> 
+            <td>
+			<table width="100%" border="0" cellspacing="1" cellpadding="1" id="artigos">
+                {{section name=i loop=$artigos}} 
+                <tr> 
+                  <td style="width:80px;">{{$artigos[i].date|date_format:"%d.%m.%Y"}}</td>
+                  <td><a href="{{$rootfolder}}/artigos/{{$artigos[i].url}}/">{{$artigos[i].title|truncate:50}}</a></td>
+                </tr>
+                {{/section}}
+			</table>
+			</td>
+          </tr>
+          <tr> 
+            <td align="right">&nbsp;</td>
+          </tr>
+          <tr> 
+            <td align="right"><a href="{{$rootfolder}}/artigos/">Ver mais</a></td>
+          </tr>
+        </table>
+      </td>
+      <td valign="top">
+      		<div id="inscricao-workshops">
+      			<a href="{{$rootfolder}}/inscricao-para-workshops/"><img src="{{$rootfolder}}/media/images/inscricao-para-workshops.jpg" alt"Incrição para workshops"/></a>
+      		</div>
+			<div id="cursos">
+			   <div class="roundtop"><img src="{{$rootfolder}}/media/images/tl.gif" alt="" width="15" height="15" class="corner" style="display: none"/></div>
+							<table border="0" cellspacing="0" cellpadding="0" id="grid-cursos">
+								<tr><td style="height:50px;"><h3 class="agenda">Agenda de treinamentos</h3></td></tr>
+								<tr><td>
+									<table border="0" cellspacing="0" cellpadding="0" width="100%">
+										{{section name=i loop=$cursos}}
+										<tr onclick="javascript:Toggle_trGrpHeader('{{"abertos_`$smarty.section.i.index`"}}');" style="cursor:pointer;">
+											<td style="width:30px;"><img src="{{$rootfolder}}/media/images/{{if !$cursos[i].confirmado}}maximizar{{else}}minimizar{{/if}}.png" id="trGrpHeader{{"abertos_`$smarty.section.i.index`"}}_Img" alt=""/></td>
+											<td>{{$cursos[i].curso_nome}}</td>
+										</tr>
+										<tr id="trRow{{"abertos_`$smarty.section.i.index`"}}"{{if !$cursos[i].confirmado}} style="display:none;"{{/if}}>
+											<td>&nbsp;</td>
+											<td>
+												<table width="95%" cellpadding="0" cellspacing="0" border="0" style="padding-top:4px;">
+													{{section name=j loop=$cursos[i].turmas}}
+													<tr><td {{if $cursos[i].turmas[j].confirmada == 't'}}style="background-color:#CCD3DD"{{/if}}>&nbsp;<a href="{{$rootfolder}}/agenda-de-treinamentos/{{$cursos[i].url}}/{{$cursos[i].turmas[j].code}}/">{{$cursos[i].turmas[j].cidade}} - {{$cursos[i].turmas[j].dt_inicio|date_format:"%d/%m/%Y"}} à {{$cursos[i].turmas[j].dt_termino|date_format:"%d/%m/%Y"}}</a></td></tr>
+													{{/section}}
+												</table>
+											</td>
+										</tr>
+										{{/section}}
+									</table>
+								</td></tr>
+								<tr><td>&nbsp;</td></tr>
+								<tr><td>
+								<table border="0" cellspacing="0" cellpadding="0" width="95%">
+								<tr>
+								<td><img src="{{$rootfolder}}/media/images/turma_confirmada.gif" alt=""/></td>
+								<td align="right"><a href="{{$rootfolder}}/agenda-de-treinamentos/">Ver mais</a></td></tr>
+								</table>
+								</td></tr>
+								<tr><td>&nbsp;</td></tr>
+							</table>
+			   <div class="roundbottom"><img src="{{$rootfolder}}/media/images/bl.gif" alt="" width="15" height="15" class="corner" style="display: none"/></div>
+			</div>
+	  </td>
+    </tr>
+  </table>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+if(typeof sIFR == "function"){
+	sIFR.replaceElement("h3.agenda","{{$rootfolder}}/media/century_gothic.swf", named({sBgColor: "#EFEFEF", sWmode: "transparent"}));
+	sIFR.replaceElement("h3", "{{$rootfolder}}/media/century_gothic.swf", named({sBgColor: "#FFFFFF", sWmode: "transparent"}));
+};
+//]]>
+</script>

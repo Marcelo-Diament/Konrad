@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title>Gerenciador de websites</title>
+	<style type="text/css">
+	<!--
+		@import url("css/admin.css");
+		@import url("css/dtree.css");
+	-->
+	</style>
+	<script language="JavaScript" type="text/javascript" src="javascript/defaultl.js"></script>
+</head>
+<body>
+<table width="100%" style="height:100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center" valign="top">
+		<table width="90%" border="0" cellpadding="0" cellspacing="0" class="table">
+		  <tr valign="middle">
+			<td height="28" colspan="5" class="topo"><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="font-weight:bold; color:#FFF;">Administração :: Konrad</td>
+                <td align="right"><a href="." style="color:#FFF">Menu principal</a></td>
+              </tr>
+            </table></td>
+		  </tr>
+		  <tr>
+			<td width="15" height="10"></td>
+			<td width="498"></td>
+			<td width="10"></td>
+		  </tr>
+		  <tr>
+			<td height="10"></td>
+			<td valign="top" class="{{if $error}}error{{else}}display{{/if}}">{{if $error}}<img src="images/alert.gif" align="baseline">&nbsp;{{/if}}{{$error|default:$display}}
+			</td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td height="13"></td>
+			<td></td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td height="92"></td>
+			<td valign="top">
+			{{if !$smarty.get.user_code}}
+			<fieldset>
+			<legend><img src="images/thumb_mod_users.gif" align="middle">&nbsp;Adicionar usuário&nbsp;</legend>
+			<form action="" method="post" name="add_user">
+			<input type="hidden" name="salvar" value="1">
+			  <table width="100%" border="0" cellpadding="1" cellspacing="1" class="form">
+				<tr>
+				  <td width="60">Nome :</td>
+				  <td><input name="name" type="text" size="40" maxlength="100" value="{{$smarty.post.name}}"></td>
+				</tr>
+				<tr>
+				  <td>E-mail :</td>
+				  <td><input name="email" type="text" size="40" maxlength="60" value="{{$smarty.post.email}}"></td>
+				</tr>
+				<tr>
+				  <td>Usuário :</td>
+				  <td><input name="user" type="text" size="40" maxlength="15" value="{{$smarty.post.user}}"></td>
+				</tr>
+				<tr>
+				  <td>Senha :</td>
+				  <td><input name="password" type="password" size="40" maxlength="15" value="{{$smarty.post.password}}"></td>
+				</tr>
+				<tr>
+				  <td>Ativo :</td>
+				  <td><input type="checkbox" name="enabled" value="1" {{if $smarty.post.enabled || !$smarty.post.salvar}}checked{{/if}}></td>
+				</tr>
+				<tr>
+				<td>&nbsp;</td>
+				<td><input type="submit" value="Salvar" onClick="submit(); this.value='Processando...'; this.disabled=true;" {{if !$permissions.usrinsert}}disabled{{/if}}></td>
+				</tr>
+			  </table>
+		    </form>
+			</fieldset>
+			{{elseif $smarty.get.user_code && !$smarty.get.option}}
+			<fieldset>
+			<legend><img src="images/thumb_mod_users.gif" align="middle">&nbsp;Editar a usuário&nbsp;</legend>
+			<form action="" method="post" name="update_user">
+			<input type="hidden" name="update" value="1">
+			  <table width="100%" border="0" cellpadding="1" cellspacing="1" class="form">
+				<tr>
+				  <td width="90">Nome :</td>
+				  <td><input name="name" type="text" size="40" maxlength="100" value="{{$smarty.post.name}}"></td>
+				</tr>
+				<tr>
+				  <td>E-mail :</td>
+				  <td><input name="email" type="text" size="40" maxlength="60" value="{{$smarty.post.email}}"></td>
+				</tr>
+				<tr>
+				  <td>Ativo :</td>
+				  <td><input type="checkbox" name="enabled" value="1" {{if $smarty.post.enabled}}checked{{/if}}></td>
+				</tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+				<tr>
+				  <td>Usuário :</td>
+				  <td>
+				  <input type="hidden" name="user" value="{{$smarty.post.user}}">
+				  <input type="text" size="30" maxlength="15" value="{{$smarty.post.user}}" disabled></td>
+				</tr>
+				<tr>
+				  <td>Senha :</td>
+				  <td><input name="password" type="password" size="30" maxlength="15" value="{{$smarty.post.password}}"></td>
+				</tr>
+				<tr>
+				  <td>Repetir senha :</td>
+				  <td><input name="rpassword" type="password" size="30" maxlength="15" value="{{$smarty.post.rpassword}}"></td>
+				</tr>
+				<tr>
+				<td>&nbsp;</td>
+				<td>
+				<input type="submit" value="Salvar" onClick="submit(); this.value='Processando...'; this.disabled=true;" {{if !$permissions.usrinsert}}disabled{{/if}}>
+				<input type="button" value="Sair" onClick="redirect('{{"?page=`$smarty.get.page`"|secureurl}}')">
+				</td></tr>
+			  </table>
+		    </form>
+			</fieldset>
+			{{else}}
+			<fieldset>
+			<legend><img src="images/thumb_mod_users.gif" align="middle">&nbsp;Setar permissões&nbsp;</legend>
+			<script language="JavaScript" type="text/javascript" src="javascript/dtree.js"></script>
+			<form action="" method="post" name="set_permissions">
+			<input type="hidden" name="salvar" value="1">
+			 <table width="100%" border="0" cellpadding="1" cellspacing="1" class="form">
+			  <tr> 
+				<td>
+				<div class="dtree"> 
+				  <script type="text/javascript">
+						<!--
+						menu = new dTree('menu');
+						menu.add(0,-1,'Módulos admiistrativos');
+						{{counter start=0 print=false assign="id"}}
+						{{section name=i loop=$modules}}{{counter}}{{assign var="sid" value=$id}}
+						{{assign var="modulecode" value=$modules[i].code}}
+						menu.add({{$id}},0,'{{$modules[i].name}}','','','','','page.gif');{{counter}}
+						menu.add({{$id}},{{$sid}},"<label for='inpt{{$id}}'><input type=checkbox name='per[{{$modulecode}}][INSERT]' value='1' id='inpt{{$id}}' class=\'inputFields\' {{if $mpermissions[$modulecode].insert}}checked{{/if}}> Insert</label>",'','','','','key.gif');{{counter}}
+						menu.add({{$id}},{{$sid}},"<label for='inpt{{$id}}'><input type=checkbox name='per[{{$modulecode}}][UPDATE]' value='1' id='inpt{{$id}}' class=\'inputFields\' {{if $mpermissions[$modulecode].update}}checked{{/if}}> Update</label>",'','','','','key.gif');{{counter}}
+						menu.add({{$id}},{{$sid}},"<label for='inpt{{$id}}'><input type=checkbox name='per[{{$modulecode}}][DELETE]' value='1' id='inpt{{$id}}' class=\'inputFields\' {{if $mpermissions[$modulecode].delete}}checked{{/if}}> Delete</label>",'','','','','key.gif');{{counter}}
+						menu.add({{$id}},{{$sid}},"<label for='inpt{{$id}}'><input type=checkbox name='per[{{$modulecode}}][VIEW]' value='1' id='inpt{{$id}}' class=\'inputFields\' {{if $mpermissions[$modulecode]}}checked{{/if}}> View</label>",'','','','','key.gif');
+						{{/section}}
+						menu.draw();
+						//-->
+					</script>
+				</div>				
+				</td>
+			  </tr>
+			  	<tr><td colspan="2">&nbsp;</td></tr>
+				<tr>
+				<td>
+				<input type="submit" value="Salvar" onClick="submit(); this.value='Processando...'; this.disabled=true;" {{if !$permissions.usrinsert}}disabled{{/if}}>
+				<input type="button" value="Sair" onClick="redirect('{{"?page=`$smarty.get.page`"|secureurl}}')">
+				</td>
+				<td>&nbsp;</td>
+				</tr>
+			</table>
+		    </form>
+			</fieldset>
+			{{/if}}
+			</td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td height="25"></td>
+			<td>&nbsp;</td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td height="95"></td>
+			<td valign="top">
+			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="form">
+				<tr>
+				  <td width="100%" height="86" valign="top">
+					<fieldset>
+					<legend>Usuários cadastrados &nbsp;</legend>
+					<form name="users_list" method="post" action="">
+					<input type="hidden" name="user_code">
+                    <table border="0" cellpadding="0" cellspacing="0" class="grid">
+                      <tr class="ordenado"> 
+                        <td width="80">&nbsp;C&oacute;digo</td>
+                        <td>Nome</td>
+						<td width="50">Status</td>
+						<td width="20">&nbsp;</td>
+                        <td width="20">&nbsp;</td>
+                      </tr>
+                      <tr> 
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+						<td>&nbsp;</td>
+                        <td>&nbsp;</td>
+						<td>&nbsp;</td>
+                      </tr>
+                      {{section name=i loop=$users}}
+                      <tr onMouseOver="mOvr(this,'#EFEFEF')" onMouseOut="mOut(this,'#FFFFFF')"> 
+                        <td onClick="redirect('{{"?page=`$smarty.get.page`&user_code=`$users[i].code`"|secureurl}}')">&nbsp;{{$users[i].code}}</td>
+                        <td onClick="redirect('{{"?page=`$smarty.get.page`&user_code=`$users[i].code`"|secureurl}}')">&nbsp;{{$users[i].name}}</td>
+						<td onClick="redirect('{{"?page=`$smarty.get.page`&user_code=`$users[i].code`"|secureurl}}')">&nbsp;{{if ($users[i].enabled)}}{{if !$users[i].permissions}}<img src="images/status_yellow.gif">{{else}}<img src="images/status_green.gif">{{/if}}{{else}}<img src="images/status_red.gif">{{/if}}</td>
+						<td><img onClick="if(!confirm('Deseja editar as permissões de ({{$users[i].name}}) ?')){ return false} else{redirect('{{"?page=`$smarty.get.page`&user_code=`$users[i].code`&option=1"|secureurl}}')};" src="images/permissions_{{if !$permissions.usrdelete || $users[i].code==1 && $smarty.session.data.usrcode != 1}}false{{else}}true{{/if}}.gif" width="15" height="16" border="0" {{if !$permissions.usrdelete || $smarty.session.data.usrcode != 1}}disabled{{/if}}></td>
+                        <td><input name="delete" type="image" onClick="if(!confirm('Deseja remover o usuário ({{$users[i].name}}) ?')){ return false} else{user_code.value='{{$users[i].code}}'};" src="images/delete_{{if !$permissions.usrdelete || $users[i].code == 1}}false{{else}}true{{/if}}.gif" style="width:15px; height:16px;" {{if !$permissions.usrdelete || $users[i].code == 1}}disabled{{/if}}></td>
+                      </tr>
+                      {{sectionelse}}
+                      <tr> 
+                        <td colspan="5" align="center">Nenhum usuário cadastrado</td>
+                      </tr>
+                      {{/section}}
+                      <tr> 
+                        <td>&nbsp;</td>
+						<td>&nbsp;</td>
+                        <td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+                      </tr>
+                    </table>
+					</form>
+					</fieldset>
+					<table>
+						<tr><td>&nbsp;</td></tr>
+						<tr><td>&nbsp;<img src="images/status_green.gif" align="top">&nbsp;Ativo</td></tr>
+						<tr><td>&nbsp;<img src="images/status_red.gif" align="top">&nbsp;Desativado</td></tr>
+						<tr><td>&nbsp;<img src="images/status_yellow.gif" align="top">&nbsp;Sem permissões</td></tr>
+					</table>					
+					</td>
+				</tr>
+			  </table></td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td height="23"></td>
+			<td align="right">&nbsp;</td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td height="23"></td>
+			<td align="right"><a href="."><img src="images/back.gif" alt="Voltar" width="32" height="32" border="0"></a></td>
+			<td></td>
+		  </tr>
+			<tr> 
+			<td height="57" colspan="5" valign="middle" class="copyright">
+				Resolu&ccedil;&atilde;o m&iacute;nima de 800x600 &copy; Copyright {{ $smarty.now|date_format:'%Y'}}, Konrad<br>
+				<a href="http://www.gotz.com.br" target="_blank">Http://www.gotz.com.br</a>
+			</td>
+        </tr>
+		</table>
+	</td>
+  </tr>
+</table>
+</body>
+</html>

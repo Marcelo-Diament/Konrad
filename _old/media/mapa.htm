@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Localização</title>
+	<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAEK4Mr4CSznI1RRPdYU_fkxTTwAwJew8wnHdhRMM37KlP-xaZFBS7-6zkyWHgK-l6nTenKZMdqxbsng" type="text/javascript"></script>
+	<script type="text/javascript">
+	//<![CDATA[
+
+	var WINDOW_HTML = '<div style="width: 240px; padding-right: 10px; font:11px Tahoma, Arial, sans-serif;"><b>Konrad - Soluções de Competitividade</b><br>Avenida Walter Kaufmann, 360<br>Porto Alegre - RS - Brasil<br> Fone: (51) 3347 - 7819</div>';
+	//CARREGA O MAPA DE LOCALIZAÇÃO
+	function load() {
+		if (GBrowserIsCompatible()) {
+			var map = new GMap2(document.getElementById("map"));
+			map.addControl(new GSmallMapControl());
+			map.addControl(new GMapTypeControl());
+			map.setCenter(new GLatLng(-30.022319, -51.138976), 17);
+			map.setMapType(G_NORMAL_MAP);
+			
+			var marker = new GMarker(new GLatLng(-30.022319, -51.138976));
+			map.addOverlay(marker);
+								
+			GEvent.addListener(marker, "mouseover", function() {
+				marker.openInfoWindowHtml(WINDOW_HTML);
+			});			
+		}
+		
+		marker.openInfoWindowHtml(WINDOW_HTML);
+	}
+	//]]>
+	</script>
+</head>
+<body style="border:0; background-color:#CCC;" onload="load()" onunload="GUnload()">
+	<div id="map" style="width:535px; height:535px;"></div>
+</body>
+</html>

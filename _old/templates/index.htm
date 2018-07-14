@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
+<head>
+	<title>Konrad :: Sistemas de Competitividade</title>
+	<meta name="author" content="G&ouml;tz &amp; Konrad Ltda."/>
+{{if !$getKey[0]}}
+	<meta name="description" content="Somos uma empresa de treinamento, consultoria e auditoria em sistemas de gestão normativos e de desempenho." />
+	<meta name="Keywords" content="produção enxuta, Lean Manufacturing, Lean Office, Kaizen, sistemas de gestão, iso, bmp, sig, ohsas, SASSMAQ, PBQP-h, certificados de produtos, abnt, ce, treinamento, consultoria, auditoria, software, cursos de gestão, Consultoria CRCC, Consultoria Registro Local, Assessoria Registro Local, Assessoria CRCC, Consultoria ONIP, Assessoria ONIP, Consultoria Petrobras, Consultoria Petronect" />
+{{/if}}
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="revisit-after" content="1" />
+	<meta name="language" content="pt-br" />
+	<meta name="robots" content="all" />
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta name="verify-v1" content="kkQDLLiu3rVDroCumwLXl9XlQJHToWBa87VMiYh59WU=" />
+	<link rel="shortcut icon" href="{{$rootfolder}}/favicon.ico" type="image/x-icon" />
+			
+	<link rel="stylesheet" type="text/css" media="screen" href="{{$rootfolder}}/css/sIFR-screen.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="{{$rootfolder}}/css/konrad.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="{{$rootfolder}}/css/menu.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="{{$rootfolder}}/css/dropdown.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="{{$rootfolder}}/css/dtree.css" />
+	<link rel="stylesheet" type="text/css" media="print" href="{{$rootfolder}}/css/print.css" />
+	
+	<script type="text/javascript" src="{{$rootfolder}}/javascript/konrad.js"></script>
+	<script type="text/javascript" src="{{$rootfolder}}/javascript/dtree.js"></script>
+	<script type="text/javascript" src="{{$rootfolder}}/javascript/sifr.js"></script>
+	<script type="text/javascript" src="http://www.google-analytics.com/urchin.js"></script>
+</head>
+<body id="bd">
+<div id="container">
+	<div id="menu-topo">		
+		<a href="#" onclick="javascript: window.open('http://webmail.konrad.com.br');">Webmail</a>
+		<img src="{{$rootfolder}}/media/images/point.gif" alt=""/>
+		<a href="#" onclick="javascript: window.open('{{$rootfolder}}/admin/');">Área Restrita</a>
+		<img src="{{$rootfolder}}/media/images/point.gif" alt=""/>
+		<a href="{{$rootfolder}}/mapa-do-site/">Mapa do Site</a>
+	</div>
+	<div id="main">
+		<div id="header">
+		<div id="logo"><a href="{{$rootfolder}}/"><img src="{{$rootfolder}}/media/images/logotipo.jpg" alt=""/></a></div>
+		<div id="iso">
+			<a href="#" onclick="javascript: window.open('{{$rootfolder}}/media/CRCC_25369+01.pdf');">Qualificação da Petrobras para Treinamento, Consultoria e Auditoria em QSMS - CRCC 25.369 [01]</a>
+		</div>
+	</div>
+		<div id="menu">
+			<div id="menu-superior"> 
+			  <ul id="menu-principal" class="dropdown">
+				<li id="botao-empresa"><a class="linkPrincipal" href="{{$rootfolder}}/a-empresa/"><img src="{{$rootfolder}}/media/images/btn_empresa.gif" alt=""/></a></li>
+				<li id="botao-clientes"><a class="linkPrincipal" href="{{$rootfolder}}/clientes/"><img src="{{$rootfolder}}/media/images/btn_clientes.gif" alt=""/></a></li>
+				<li id="botao-atuacao"><a class="linkPrincipal" href="{{$rootfolder}}/conteudo/areas-de-atuacao/"><img src="{{$rootfolder}}/media/images/btn_area_atuacao.gif" alt=""/></a> 
+				  <ul>
+				  	<li class="topo">&nbsp;</li>
+					{{assign var="submenu" value=1|submenus}}
+					{{section name=i loop=$submenu}}
+					<li><a href="{{$rootfolder}}/conteudo/area-de-atuacao/{{$submenu[i].url}}/">{{$submenu[i].title}}</a></li>
+					{{/section}}
+					<li class="final">&nbsp;</li>
+				  </ul>
+				</li>
+				<li id="botao-servicos"><a class="linkPrincipal" href="{{$rootfolder}}/conteudo/servicos/"><img src="{{$rootfolder}}/media/images/btn_servicos.gif" alt=""/></a> 
+				  <ul>
+				  	<li class="topo">&nbsp;</li>
+					{{assign var="submenu" value=2|submenus}}
+					{{section name=i loop=$submenu}}
+					<li><a href="{{$rootfolder}}/conteudo/servicos/{{$submenu[i].url}}/">{{$submenu[i].title}}</a></li>
+					{{/section}}
+					<li class="final">&nbsp;</li>
+				  </ul>
+				</li>
+				<li id="botao-contato"><a class="linkPrincipal" href="{{$rootfolder}}/contato/"><img src="{{$rootfolder}}/media/images/btn_contato.gif" alt=""/></a></li>
+			  </ul>
+			</div>
+		</div>
+		<div id="content">
+			{{include file="$page"}}
+		</div>
+	</div>
+	<div id="rodape">
+		<div id="desenvolvedor"><a href="#" onclick="javascript: window.open('http://www.gotz.com.br');"><img src="{{$rootfolder}}/media/images/gotz.jpg" alt="Desenvolvedor" title="Desenvolvedor"/></a></div>
+		<div id="links">
+		<a href="{{$rootfolder}}/">Home</a> | <a href="{{$rootfolder}}/a-empresa/">A Empresa</a> | <a href="{{$rootfolder}}/clientes/">Clientes</a> | <a href="{{$rootfolder}}/conteudo/area-de-atuacao/">Área de atuação</a> | <a href="{{$rootfolder}}/conteudo/servicos/">Serviços</a> | <a href="{{$rootfolder}}/contato/">Contato</a>
+		<p>&copy; Copyright {{$smarty.now|date_format:"%Y"}} Konrad - Sistemas de Competitividade<br/>Av. Walter Kaufmann, 360 - Porto Alegre - CEP 91220-000 Fone/Fax: (51) 3347-7819</p>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	try {
+		_uacct = "UA-4224943-7";
+		urchinTracker();
+	} catch(err) {}
+</script>
+</body>
+</html>

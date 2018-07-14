@@ -1,0 +1,13 @@
+.post-type-page #favorite-actions, 
+#wp-admin-bar-new-content, 
+#wp-admin-bar-view, 
+#contextual-help-link-wrap, 
+#screen-options-link-wrap, 
+.post-type-page #pageparentdiv, 
+.post-type-page #visibility, 
+.post-type-page #minor-publishing, 
+.post-type-page #duplicate-action, 
+.post-type-page #delete-action, 
+.post-type-page .add-new-h2 { 
+	display:none !important; 
+}

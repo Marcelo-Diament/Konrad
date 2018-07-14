@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title>Gerenciador de websites</title>
+	<style type="text/css">
+	<!--
+		@import url("css/admin.css");
+	-->
+	</style>
+</head>
+<body>
+<table width="100%" style="height:100%"  border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center" valign="top">
+		<table width="90%" border="0" cellpadding="0" cellspacing="0" class="table">
+        <tr valign="middle"> 
+          <td height="28" colspan="5" class="topo">
+			<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="font-weight:bold; color:#FFF;">Administração :: Konrad</td>
+                <td align="right"><a href="?page=logoff" onClick="if(!confirm('Deseja sair do sistema ?')){return false} else{return true};" style="color:#FFF">Sair do sistema</a></td>
+              </tr>
+            </table>		  
+		  </td>
+        </tr>
+        <tr> 
+          <td width="15" height="5"></td>
+          <td width="66"></td>
+          <td width="352"></td>
+          <td width="80"></td>
+          <td width="10"></td>
+        </tr>
+        <tr> 
+          <td height="22"></td>
+          <td colspan="3" align="right" valign="top" class="menuinfo"><strong>&Uacute;ltimo 
+            acesso: </strong>
+			{{if $smarty.session.data.lastaccess}}
+            {{$smarty.session.data.lastaccess|date_format:"%d/%m/%Y - %H:%M"}} [ {{$smarty.session.data.ip}} ]
+			{{else}}
+			sem registros
+			{{/if}}
+			</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td height="40"></td>
+          <td>&nbsp;</td>
+          <td align="center"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr> 
+          <td height="60">&nbsp;</td>
+          <td colspan="3" align="center">
+		  {{section name=i loop=$modules}}
+		  <a href="?page={{$modules[i].module_code}}" {{if $modules[i].target}}target="$modules[i].target"{{/if}} {{if $modules[i].module_code == 'logoff'}}onClick="if(!confirm('Deseja sair do gerenciador ?')){ return false} else{return true};"{{/if}}><img src="images/{{$modules[i].icon}}" alt="{{$modules[i].name}}" border="0"></a>
+		  {{/section}}
+		  </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td height="14"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+			<tr> 
+			<td height="57" colspan="5" valign="middle" class="copyright">
+				Resolu&ccedil;&atilde;o m&iacute;nima de 800x600 &copy; Copyright {{ $smarty.now|date_format:'%Y'}}, Konrad<br>
+				<a href="http://www.gotz.com.br" target="_blank">Http://www.gotz.com.br</a>
+			</td>
+        </tr>
+      </table>
+	 </td>
+  </tr>
+</table>
+</body>
+</html>

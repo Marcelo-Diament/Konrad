@@ -1,0 +1,70 @@
+@-webkit-keyframes seta-down {
+  0%,
+  10%,
+  20%,
+  100% {
+    margin-top: 0;
+    margin-bottom: 0px;
+  }
+  5%,
+  15% {
+    margin-top: 20px;
+    margin-bottom: -20px;
+  }
+}
+@-moz-keyframes seta-down {
+  0%,
+  10%,
+  20%,
+  100% {
+    margin-top: 0;
+    margin-bottom: 0px;
+  }
+  5%,
+  15% {
+    margin-top: 20px;
+    margin-bottom: -20px;
+  }
+}
+@-ms-keyframes seta-down {
+  0%,
+  10%,
+  20%,
+  100% {
+    margin-top: 0;
+    margin-bottom: 0px;
+  }
+  5%,
+  15% {
+    margin-top: 20px;
+    margin-bottom: -20px;
+  }
+}
+@-o-keyframes seta-down {
+  0%,
+  10%,
+  20%,
+  100% {
+    margin-top: 0;
+    margin-bottom: 0px;
+  }
+  5%,
+  15% {
+    margin-top: 20px;
+    margin-bottom: -20px;
+  }
+}
+@keyframes seta-down {
+  0%,
+  10%,
+  20%,
+  100% {
+    margin-top: 0;
+    margin-bottom: 0px;
+  }
+  5%,
+  15% {
+    margin-top: 20px;
+    margin-bottom: -20px;
+  }
+}

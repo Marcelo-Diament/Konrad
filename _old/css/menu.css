@@ -1,0 +1,160 @@
+#menu-superior {
+	height: 28px;
+	margin:0 20px;
+	padding-top:2px;
+}
+
+#menu-principal {
+	text-align:center;
+	height:28px;
+}
+
+body.pagina-inicial #menu-superior {
+	background:transparent none;
+	float:left;
+	margin:0;
+}
+
+#menu-principal #botao-empresa,
+#menu-principal #botao-clientes,
+#menu-principal #botao-atuacao,
+#menu-principal #botao-servicos,
+#menu-principal #botao-contato {
+	border:0;
+	margin:0em;
+	padding:0pt;
+	float:left;
+}
+
+#menu-principal #botao-empresa a.linkPrincipal,
+#menu-principal #botao-clientes a.linkPrincipal,
+#menu-principal #botao-atuacao a.linkPrincipal,
+#menu-principal #botao-servicos a.linkPrincipal,
+#menu-principal #botao-contato a.linkPrincipal {
+	border:0pt none;
+	cursor:pointer;
+	height:0px !important;
+	margin:0pt;
+	overflow:hidden;
+	padding:0px 0pt 0pt;
+	text-decoration:none;
+	width:230px;
+}
+
+#botao-empresa ul,
+#botao-clientes ul,
+#botao-atuacao ul,
+#botao-servicos ul,
+#botao-contato ul {
+	width:231px;
+	margin-top:0px;
+	padding:10px 0px 10px 0px;
+	background:url(../media/images/back_menu.gif) no-repeat bottom;
+}
+
+#botao-empresa ul li,
+#botao-clientes ul li,
+#botao-atuacao ul li,
+#botao-servicos ul li,
+#botao-contato ul li {
+	font-size:12px;
+	/*height:2.2em;*/
+	line-height:2em;
+	text-align:left;
+	border-bottom:1px solid #999;
+	margin:0px 12px 0px 12px;
+	display:block;
+	background:url(../media/images/square_menu.gif) no-repeat 8px 10px;
+}
+
+#botao-empresa ul li.final,
+#botao-clientes ul li.final,
+#botao-atuacao ul li.final,
+#botao-servicos ul li.final,
+#botao-contato ul li.final {
+	border-bottom:none;
+	display:block;
+	background:0;
+}
+
+#botao-empresa ul li.topo,
+#botao-clientes ul li.topo,
+#botao-atuacao ul li.topo,
+#botao-servicos ul li.topo,
+#botao-contato ul li.topo {
+	border-bottom:none;
+	display:block;
+	background:0;
+	height:10px;
+	width:230px;
+	padding:-1px;
+	margin:0;
+	background:url(../media/images/topo_menu.jpg) no-repeat 1px 0px;
+}
+
+#botao-empresa ul li a,
+#botao-clientes ul li a,
+#botao-atuacao ul li a,
+#botao-servicos ul li a,
+#botao-contato ul li a {
+	padding-left:25px;
+	display:block;
+	color:#000;
+	text-decoration:none;
+}
+
+#botao-empresa ul li a:hover,
+#botao-clientes ul li a:hover,
+#botao-atuacao ul li a:hover,
+#botao-servicos ul li a:hover,
+#botao-contato ul li a:hover {
+	padding-left:25px;
+	display:block;
+	color:#000;
+	font-weight:bold;
+	background:#CCD3DD url(../media/images/square_menu.gif) no-repeat 8px 10px;
+}
+
+#menu-superior ul#menu-principal li#botao-contato,
+#menu-superior ul#menu-principal li#botao-servicos,
+#menu-superior ul#menu-principal li#botao-atuacao,
+#menu-superior ul#menu-principal li#botao-clientes,
+#menu-superior ul#menu-principal li#botao-empresa {
+	position:absolute;
+	height:22px;
+}
+
+#menu-superior ul#menu-principal li#botao-empresa { width:108px;}
+#menu-superior ul#menu-principal li#botao-clientes { width:114px; }
+#menu-superior ul#menu-principal li#botao-atuacao { width:164px; }
+#menu-superior ul#menu-principal li#botao-servicos { width:82px; }
+#menu-superior ul#menu-principal li#botao-contato { width:85px; }
+
+
+#menu-superior ul#menu-principal{
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#menu-principal #botao-empresa {left:0;}
+#menu-principal #botao-clientes {left:108px;}
+#menu-principal #botao-atuacao {left:222px;}
+#menu-principal #botao-servicos {left:386px;}
+#menu-principal #botao-contato {left:468px;}
+
+body.pagina-inicial #menu-principal #botao-empresa {left:10px;}
+body.pagina-inicial #menu-principal #botao-contato {right:10px;}
+
+
+#menu-principal div ul li a {
+	display:block;
+	text-decoration:none;
+	background-color:#339;
+	color:#000;
+	padding:.4em 0;
+}
+
+#menu-principal div ul li a:hover {
+	background-color:#ddf;
+	color:darkblue;
+}

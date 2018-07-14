@@ -1,0 +1,55 @@
+<h1>{{menuinterno}}</h1>
+{{if $getKey[2]}}
+<div id="agenda">
+	<div id="reserva">
+		<ul>
+			<li><a href="{{$rootfolder}}/fazer-reserva/{{$getKey[2]}}/" class="reserva">Fazer reserva</a></li>
+			<li><a href="{{$rootfolder}}/solicitar-informacoes/{{$getKey[2]}}/" class="informacoes">Solicitar informações</a></li>
+		</ul>
+	</div>
+	<div id="conteudo">
+	<h4>{{$turma.nome_curso}}</h4>
+	<h5>{{$turma.cidade}} - {{$turma.dt_inicio|date_format:"%d/%m/%Y"}} à {{$turma.dt_termino|date_format:"%d/%m/%Y"}}</h5>
+	<ul>
+		{{if $turma.programa}}<li><strong>Programa:</strong><p>{{$turma.programa|nl2br}}</p></li>{{/if}}
+		{{if $turma.objetivo}}<li><strong>Objetivo da aprendizagem:</strong><p>{{$turma.objetivo|nl2br}}</p></li>{{/if}}
+		{{if $turma.metodologia}}<li><strong>Metodologia:</strong><p>{{$turma.metodologia|nl2br}}</p></li>{{/if}}
+		{{if $turma.publico_alvo}}<li><strong>Público-alvo:</strong><p>{{$turma.publico_alvo|nl2br}}</p></li>{{/if}}
+		{{if $turma.instrutor}}<li><strong>Instrutor:</strong> {{$turma.instrutor}}</li>{{/if}}
+		{{if $turma.minicurriculo}}<li><strong>Mini currículo:</strong><p>{{$turma.minicurriculo|nl2br}}</p></li>{{/if}}
+		{{if $turma.carga_horaria}}<li><strong>Carga horária:</strong> {{$turma.carga_horaria}}</li>{{/if}}
+		{{if $turma.investimento}}<li><strong>Investimento:</strong> {{$turma.investimento}}</li>{{/if}}
+		{{if $turma.material_incluido}}<li><strong>Incluído:</strong><p>{{$turma.material_incluido|nl2br}}</p></li>{{/if}}
+		{{if $turma.local}}<li><strong>Local:</strong><p>{{$turma.local}}</p></li>{{/if}}
+		{{if $turma.horario}}<li><strong>Horário:</strong><p>{{$turma.horario}}</p></li>{{/if}}
+		{{if $turma.localizacao}}<li><strong>Localização:</strong><p><a href="#" onclick="javascript: window.open('{{$turma.localizacao|escape:"html"}}');">Ver mapa</a></p></li>{{/if}}
+	</ul>
+	{{if $turma.depoimentos}}
+	<img src="{{$rootfolder}}/media/images/hr_home.gif" width="100%" alt=""/>
+	<ul>
+		<li><strong>Depoimentos:</strong><p>{{$turma.depoimentos|nl2br}}</p></li>
+	</ul>
+	{{/if}}
+	</div>
+	<div class="clear"></div>
+</div>
+{{else}}
+<h2>Agenda de cursos</h2>
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+  {{section name=i loop=$cursos}} 
+  <tr><td><strong>{{$cursos[i].curso_nome}}</strong></td></tr>
+  <tr> 
+    <td>
+	<table width="95%" cellpadding="0" cellspacing="0" border="0" style="padding-top:4px;">
+        {{section name=j loop=$cursos[i].turmas}} 
+        <tr>
+          <td {{if $cursos[i].turmas[j].confirmada == 't'}}style="background-color:#CCD3DD"{{/if}}>&nbsp;<a href="{{$rootfolder}}/agenda-de-cursos/{{$cursos[i].url}}/{{$cursos[i].turmas[j].code}}/">{{$cursos[i].turmas[j].cidade}} 
+            - {{$cursos[i].turmas[j].dt_inicio|date_format:"%d/%m/%Y"}} à {{$cursos[i].turmas[j].dt_termino|date_format:"%d/%m/%Y"}}</a></td>
+        </tr>
+        {{/section}} </table></td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
+  {{/section}} 
+  <tr><td><img src="{{$rootfolder}}/media/images/turma_confirmada.gif" alt=""/></td></tr>
+</table>
+{{/if}}

@@ -1,0 +1,12 @@
+<h1>{{menuinterno}}</h1>
+<h2>Mapa do Site</h2>
+<script type="text/javascript">
+	<!--	
+	mapa = new dTree('mapa', '{{$rootfolder}}/media/images/tree/');
+	mapa.add(0,-1,'Home', '{{$rootfolder}}/');
+	{{foreach key=id item=item from=$mapa}}
+	mapa.add({{$id+1}},{{$item.submenu}},'{{$item.name}}', '{{$rootfolder}}/{{$item.url}}/');
+	{{/foreach}}
+	document.write(mapa);
+	//-->
+</script>

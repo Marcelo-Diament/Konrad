@@ -1,0 +1,18 @@
+<h1>{{menuinterno}}</h1>
+
+<div id="conteudos">
+{{if $submenus}}
+<ul id="primary-nav">
+{{section name=i loop=$submenus}}
+<li><a href="{{$rootfolder}}/conteudo/{{$getKey[1]}}/{{if $getKey[2]}}{{$getKey[2]}}/{{/if}}{{$submenus[i].url}}/">{{$submenus[i].title}}</a></li>
+{{/section}}
+</ul>
+{{/if}}
+
+<div id="conteudo" {{if !$submenus}}style="width:100%;"{{/if}}>
+	<h2>{{$conteudo.title}}</h2>
+	{{$conteudo.content}}
+</div>
+
+</div>
+<div class="clear"></div>

@@ -1,0 +1,25 @@
+body { 	background-image: url(../images/bg.gif); }
+
+.table{	border:#000000 1px solid; background-color:#FFF; }
+.form{ font-size:11px; }
+
+.grid{ width:100%; border-top:#CCCCCC 1px solid; border-left:#CCCCCC 1px solid;	border-right:#CCCCCC 1px solid; }
+.grid .ordenado{ background-color:#DBDBDB; height:18px; color:#666666; font-weight:bold; }
+.grid .fundo{ background-color:#EFEFEF; }
+.grid td{ border-bottom:#CCCCCC 1px solid; height:20px; }
+.grid th{ border-right:#CCCCCC 1px solid; }
+
+.error{	color:#FF0000; font-weight:bold; }
+.display{ color:#0000FF; font-weight:bold; }
+.copyright{	font-size:10px; text-align:center; color:#999999; }
+.topo{ border-bottom:#000000 1px solid;	background-color:#666666; font-weight:bold; color:#FFFFFF; }
+.menuinfo{color:#333333; }
+table, td, tr, th, p, div, input, select{ font-family:Verdana; font-size:11px; }
+
+#error { border: #FF0000 1px dashed; height: 25px; background: #FFECEC; padding-top: 4px; padding-left: 5px; font-weight: bold; font-size:12px; }
+#success { border: #333333 1px dashed; height: 25px; background: #F0FAFF; padding-top: 4px; padding-left: 5px; font-weight: bold; font-size:12px; }
+
+a:link{	font-family:Verdana, Arial, Helvetica, sans-serif; text-decoration:none; color:#000000; }
+a:visited{ font-family:Verdana, Arial, Helvetica, sans-serif; text-decoration:none; color:#000000; }
+a:hover{ font-family:Verdana, Arial, Helvetica, sans-serif;	text-decoration:underline; color:#000000; }
+a:active{ font-family:Verdana, Arial, Helvetica, sans-serif; text-decoration:none; color:#000000; }

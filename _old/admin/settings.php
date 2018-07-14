@@ -1,0 +1,81 @@
+<?php
+/**
+ * Project:     GERENCIADOR DE SITES
+ * File:        SETTINGS.PHP
+ * 
+ * @author Diógenes Konrad Götz
+ * @copyright Götz & Konrad
+ * @link http://www.gotz.com.br
+ */
+
+import('package.core.PasswordValidator', ADMINCLASS); # Faz a validação de senhas
+
+$name      = (string) $_POST['name'];
+$email     = (string) $_POST['email'];
+$user      = (string) $_POST['user'];
+$password  = (string) $_POST['password'];
+$rpassword = (string) $_POST['rpassword'];
+
+/**
+ * ATUALIZA O DADOS DE USUÁRIO
+ */
+if ($_POST['update'])
+{
+	$Validpass = new PasswordValidator($password);
+	if (!$name) $error='Preencha o campo nome';
+	elseif (!$email) $error='Preencha o campo e-mail';
+	elseif (!defaultValid::email($email)) $error='E-mail inválido';
+	else
+	{
+		if ($password)
+		{
+			if (!$Validpass->validate_length(1, 15)) $error='Senha inválida';
+			elseif (!$Validpass->validate_whitespace()) $error='Senha não pode conter espaços em branco';
+			elseif ($password != $rpassword) $error='A senhas digitadas não conferem';
+		}
+		if (!$errors)
+		{
+			$enabled = ($enabled)?1:0;
+			$builder = new QueryBuilder('update');
+			$builder->setTable('users');
+			$builder->addColumn('name');
+			if ($password) $builder->addColumn('password');
+			$builder->addColumn('email');
+			$builder->addValue("'{$name}'");
+			if ($password) $builder->addValue("'".sha1($password)."'");
+			$builder->addValue("'{$email}'");
+			$builder->setWhere('code='.$_SESSION['data']['usrcode']);
+			if (!$conn->sql_query($builder->buildQuery())) $error='Ocorreu um erro ao tentar atualizar o usuário';
+			else $display='Usuário atualizado com sucesso';
+		}
+	}
+}
+else
+{
+	/**
+	 * SELECIONA O USUÁRIO
+	 */
+	$builder = new QueryBuilder();
+	$builder->setTable('users');
+	$builder->addColumn('name');
+	$builder->addColumn('email');
+	$builder->addColumn('username');
+	$builder->setWhere("code={$_SESSION['data']['usrcode']}");
+	$tmp = $conn->sql_fetchrow($conn->sql_query($builder->buildQuery()));
+	if (!$conn->sql_numrows())
+	{
+		$error='Usuário não encontrado';
+		$permissions['usrupdate'] = false;
+	}
+	else
+	{
+		$_POST['name']  = $tmp['name'];
+		$_POST['email'] = $tmp['email'];
+		$_POST['user']  = $tmp['username'];
+	}
+}
+
+$smarty->assign('display', $display);
+$smarty->assign('error', $error);
+$smarty->display('settings.htm');
+?>

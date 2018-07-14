@@ -1,0 +1,574 @@
+/* RESET */
+html {
+  color: #000;
+  background: #FFF;
+}
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+fieldset,
+img {
+  border: 0;
+}
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+  font-style: normal;
+  font-weight: normal;
+}
+li {
+  list-style: none;
+}
+caption,
+th {
+  text-align: left;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+q:before,
+q:after {
+  content: '';
+}
+abbr,
+acronym {
+  border: 0;
+  font-variant: normal;
+}
+sup {
+  vertical-align: text-top;
+}
+sub {
+  vertical-align: text-bottom;
+}
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+input,
+textarea,
+select {
+  font-size: 100%;
+}
+legend {
+  color: #000;
+}
+root {
+  display: block;
+}
+/*********/
+/* geral */
+/* =scroll */
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.jspContainer {
+  overflow: hidden;
+  position: relative;
+}
+.jspPane {
+  position: absolute;
+}
+.jspVerticalBar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+.jspVerticalBar .jspArrow {
+  height: 16px;
+  width: 29px;
+}
+.jspVerticalBar .jspArrow:focus {
+  outline: none;
+}
+.jspHorizontalBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background: red;
+}
+.jspHorizontalBar .jspArrow {
+  width: 16px;
+  float: left;
+  height: 100%;
+}
+.jspHorizontalBar .jspCap {
+  float: left;
+}
+.jspHorizontalBar .jspTrack,
+.jspHorizontalBar .jspDrag {
+  float: left;
+  height: 100%;
+}
+.jspVerticalBar *,
+.jspHorizontalBar * {
+  margin: 0;
+  padding: 0;
+}
+.pane .inside {
+  margin-right: 1em;
+}
+.jspTrack {
+    background-color: #e3e2e2;
+    
+    cursor: pointer;
+    position: relative;
+    width: 16px;
+}
+
+.jspVerticalBar{
+  width: 18px;
+}
+
+.jspDrag {
+    background: none repeat scroll 0 0 #caa735;
+    background-image: url('../img/common/scroll.png');
+    cursor: pointer;
+    left: 0;
+    position: relative;
+    top: 0;
+    background-position: center;
+}
+
+.clearin {
+  clear: both;
+  float: none;
+}
+.jspArrow {
+  background: #50506d;
+  text-indent: -20000px;
+  display: block;
+  cursor: pointer;
+}
+.jspArrow.jspDisabled {
+  cursor: default;
+  background: #80808d;
+}
+.jspCorner {
+  background: #eeeef4;
+  float: left;
+  height: 100%;
+}
+/* Alignment */
+.aligncenter,
+.alignleft,
+.alignright {
+  border-radius: 3px 3px 3px 3px;
+  margin-bottom: 1em;
+}
+.alignleft {
+  display: inline;
+  float: left;
+  margin-right: 20px;
+}
+.alignright {
+  display: inline;
+  float: right;
+  margin-left: 20px;
+}
+.aligncenter {
+  clear: both;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.alignnone {
+  margin-bottom: 20px;
+}
+.pane {
+  overflow: auto;
+}
+/* alinhamento texto */
+.al {
+  text-align: left;
+}
+.ar {
+  text-align: right;
+}
+.ac {
+  text-align: center;
+}
+.aj {
+  text-align: justify;
+}
+.ajfix {
+  line-height: 0;
+  text-align: justify;
+}
+.ajfix * {
+  line-height: 1em;
+}
+.ajfix:after {
+  content: " ";
+  display: inline-block;
+  vertical-align: middle;
+  zoom: 1;
+  *display: inline;
+  width: 100%;
+  font-size: 0;
+  line-height: 0;
+}
+.alignmidfx > * {
+  height: 100%;
+}
+.fullimg{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.alignmidfx > *:before {
+  content: " ";
+  display: inline-block;
+  vertical-align: middle;
+  zoom: 1;
+  *display: inline;
+  height: 100%;
+  width: 1px;
+  position: relative;
+}
+.block{
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  zoom: 1; /* Fix for IE7 */
+  *display: inline; /* Fix for IE7 */
+}
+.block:before {
+  content: ' ';
+  height: 100%;
+  margin-right: -1px;
+  display: inline-block;
+  vertical-align: middle;
+  zoom: 1;
+  *display: inline;
+  width: 1px;
+}
+.pl{
+  padding-left: 15px;
+}
+/* inline/-/block */
+.i,
+.im,
+.ib,
+.it,
+.block {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+}
+.bl {
+  display: block;
+  width: auto;
+}
+.i,
+.it,
+.itd {
+  vertical-align: top;
+}
+.im,
+.block {
+  vertical-align: middle;
+}
+.ib {
+  vertical-align: bottom;
+}
+/* float */
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.fn {
+  float: none;
+  clear: both;
+}
+.clearfix:after {
+  display: block;
+  float: none;
+  clear: both;
+}
+.noutc{
+  text-transform: none;
+}
+/* text */
+.upc {
+  text-transform: uppercase;
+}
+.txn {
+  text-transform: none;
+}
+/* margin */
+.mgb {
+  margin-bottom: 1em;
+}
+.mgb2 {
+  margin-bottom: 2em;
+}
+.mgbcol {
+  margin-bottom: 20px;
+}
+.mgbb {
+  margin-bottom: 0.5em;
+}
+.mgbcol {
+  margin-bottom: 30px;
+}
+.padcol {
+  padding: 20px;
+}
+.pdtcol {
+  padding-top: 30px;
+}
+.mgr {
+  margin-right: 1em;
+}
+.mgr1 {
+  margin-right: 1.5em;
+}
+.mgtb {
+  margin: 1.2em 0;
+}
+.mgtbb {
+  margin: 0.5em 0;
+}
+.mglr {
+  margin: 0 1.2em;
+}
+.mglrb {
+  margin: 0 0.5em;
+}
+.mgr0 {
+  margin-right: 0;
+}
+.mgb0 {
+  margin-bottom: 0;
+}
+.mgrb {
+  margin-right: 0.5em;
+}
+.mgr2 {
+  margin-right: 2em;
+}
+.bdb0 {
+  border-bottom: 0 !important;
+}
+.bdt0 {
+  border-top: 0 !important;
+}
+.ptb0 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.pt0{
+  padding-top: 0 !important;
+}
+/* grid */
+.fp {
+  width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+.pad {
+  padding: 25px 0;
+}
+/* effects */
+.transition(opacity .25s ease) .hovop:hover {
+  opacity: 0.6;
+}
+/* percent width */
+.fullwd {
+  width: 100%;
+}
+.halfwd {
+  width: 50%;
+}
+.maxwd {
+  max-width: 100%;
+  display: block;
+}
+/* sprite box */
+.spritebox {
+  position: fixed;
+  max-width: 220px;
+  font-size: 7px;
+  right: 0px;
+  display: none;
+  bottom: 0px;
+  background-color: rgba(50, 50, 50, 0.8);
+  z-index: 10;
+  padding: 10px;
+  color: #fff;
+}
+.spritebox > div {
+  position: relative;
+  display: inline-block;
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  vertical-align: top;
+  zoom: 1;
+  /* Fix for IE7 */
+  *display: inline;
+  /* Fix for IE7 */
+}
+.mgtcol{
+  margin-top: 30px;
+}
+.spritebox > div span.im {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  padding: 2px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.spritebox > div span.sp {
+  position: relative;
+  margin-top: 10px;
+}
+.spritewpr {
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  z-index: 9;
+}
+.spritewpr > span {
+  background-color: rgba(50, 50, 50, 0.8);
+  color: #fff;
+  padding: 3px;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.spritewpr:hover .spritebox {
+  display: block;
+}
+.spritewpr:hover > span {
+  display: none;
+}
+/* sentinela */
+.responw {
+  position: relative;
+  z-index: 0;
+}
+.responw .sentinel {
+  width: 100%;
+  position: static;
+  opacity: 0;
+}
+.responw .target {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+/* facebook */
+.fb-comments,
+.fb-comments * {
+  width: 100% !important;
+}
+/* lb */
+.lb-bg {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.lb {
+  display: none;
+}
+.lb-box {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+}
+
+.wap.cat-produtos a{
+  margin-bottom: 40px;
+}
+
+.padsizenot{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.sld-prod .sld{
+  width: 100% !important;
+  overflow: hidden;
+}
+
+.sld-prod .sld a{
+  width: 100% !important;
+  height: auto !important;
+}
+
+.nav .caroufredsel_wrapper{
+  width: 560px !important;
+  display: inline-block;
+  vertical-align: middle;
+  zoom: 1; /* Fix for IE7 */
+  *display: inline; /* Fix for IE7 */
+}
+
+.mgt70{
+  margin-top: 70px;
+}
+
+.lpc{
+  text-transform: lowercase;
+}
+

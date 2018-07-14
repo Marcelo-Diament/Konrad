@@ -1,0 +1,17 @@
+<h1>{{menuinterno}}</h1>
+<h2>Artigos</h2>
+<div id="artigos">
+{{if $getKey[1]}}
+{{if $error}}<div id="error">{{$error}}</div>{{elseif $display}}<div id="success">{{$display}}</div>{{/if}}
+<h3>{{$artigo.title}}</h3>
+<p class="date">{{$artigo.date|date_format:"%d.%m.%Y"}}</p>
+{{$artigo.description}}
+{{else}}
+<ul id="artigos-list">
+	{{section name=i loop=$artigos}}
+	<li><span class="date">{{$artigos[i].date|date_format:"%d.%m.%Y"}}</span><a href="{{$rootfolder}}/artigos/{{$artigos[i].url}}/">{{$artigos[i].title}}</a></li>
+	{{/section}}
+</ul>
+{{pagination url="`$rootfolder`/artigos/" total=$total page=$smarty.get.curpage rows=$smarty.const.ROWS}}
+{{/if}}
+</div>

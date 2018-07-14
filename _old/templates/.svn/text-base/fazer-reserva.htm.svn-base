@@ -1,0 +1,75 @@
+<h1>{{menuinterno}}</h1>
+<h2>Fazer reserva</h2>
+{{if $error}}<div id="error">{{$error}}</div>{{elseif $display}}<div id="success">{{$display}}</div>{{/if}}<br/>
+<div id="reserva">
+<h4>{{$turma.nome_curso}}</h4>
+<h5>{{$turma.cidade}} - {{$turma.dt_inicio|date_format:"%d/%m/%Y"}} à {{$turma.dt_termino|date_format:"%d/%m/%Y"}}</h5>
+<form method="post" action="">
+<table width="100%" border="0" cellpadding="1" cellspacing="1">
+	<tr><td colspan="3">&nbsp;</td></tr>
+	<tr> 
+		<td>* Nome:</td>
+		<td>&nbsp;</td>
+		<td>* Empresa:</td>
+	</tr>
+	<tr> 
+		<td><input name="nome" type="text" class="fields" value="{{$smarty.post.nome}}" tabindex="1"/></td>
+		<td>&nbsp;</td>
+		<td><input name="empresa" type="text" class="fields" value="{{$smarty.post.empresa}}" tabindex="2"/></td>
+	</tr>
+		<tr> 
+		<td>* Cargo:</td>
+		<td>&nbsp;</td>
+		<td>E-mail:</td>
+	</tr>
+	<tr> 
+		<td><input name="cargo" type="text" class="fields" value="{{$smarty.post.cargo}}" tabindex="3"/></td>
+		<td>&nbsp;</td>
+		<td><input name="email" type="text" class="fields" value="{{$smarty.post.email}}" tabindex="4"/></td>
+	</tr>
+	<tr> 
+		<td>* Telefone:</td>
+		<td>&nbsp;</td>
+		<td>Endereço:</td>
+	</tr>
+	<tr> 
+		<td><input name="telefone" type="text" class="fields" value="{{$smarty.post.telefone}}" tabindex="5"/></td>
+		<td>&nbsp;</td>
+		<td><input name="endereco" type="text" class="fields" value="{{$smarty.post.endereco}}" tabindex="6"/></td>
+	</tr>
+	<tr> 
+		<td>* Estado:</td>
+		<td>&nbsp;</td>
+		<td>* Cidade:</td>
+	</tr>
+	<tr> 
+		<td>
+		<select name="estado" tabindex="7">
+		<option value="0">Escolha uma op&ccedil;&atilde;o</option>
+		{{section name=i loop=$estados}}
+		<option value="{{$estados[i].code}}" {{if $estados[i].extenso == $smarty.post.estado}}selected{{/if}}>{{$estados[i].extenso}}</option>
+		{{/section}}
+		</select></td>
+		<td>&nbsp;</td>
+		<td><input name="cidade" type="text" class="fields" value="{{$smarty.post.cidade}}" tabindex="8"/></td>
+	</tr>
+	<tr> 
+		<td>CEP:</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr> 
+		<td><input name="cep" type="text" class="fields" value="{{$smarty.post.cep}}" tabindex="9"/></td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr> 
+		<td colspan="3">Observa&ccedil;&otilde;es / Coment&aacute;rios :</td>
+	</tr>
+	<tr> 
+		<td colspan="3"><textarea name="obs" class="fields" style="width:100%; height:150px;" tabindex="10">{{$smarty.post.obs}}</textarea></td>
+	</tr>
+	<tr><td colspan="3"><input type="hidden" name="sended" value="1"/><input type="submit" value="  Enviar  " onclick="submit(); this.value='Aguarde...'; this.disabled=true;"/></td></tr>
+</table>
+</form>
+</div>

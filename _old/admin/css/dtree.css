@@ -1,0 +1,41 @@
+.dtree {
+	position: relative;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #666;
+	white-space: nowrap;
+}
+.dtree img {
+	border: 0px;
+	vertical-align: text-bottom;
+}
+.dtree a {
+	text-decoration: none;
+}
+.dtree a:hover {
+
+	text-decoration: none;
+}
+.dtree a:visited {
+	text-decoration: none;
+}
+.dtree a:active {
+	text-decoration: none;
+}
+.dtree .node {
+	position: relative;
+	top: -2px;
+	padding: 1px;
+	color: #666;
+}
+.dtree .nodeSel {
+	position: relative;
+	top: -2px;
+	padding: 1px;
+	color: #666;
+}
+
+.inputFields{
+	width: 13px;
+	height: 13px;
+}

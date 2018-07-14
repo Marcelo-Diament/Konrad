@@ -1,0 +1,225 @@
+@media screen and (max-width: 1070px){
+	header#site-header a.logo{
+		max-width: 200px;
+	}
+	header#site-header a.logo img{
+		max-width: 100%;
+		height: auto;
+	}
+}
+
+
+@media screen and (max-width: 1023px){
+	header#site-header .contato{
+		display: none;
+	}
+	header#site-header{
+		padding: 15px 0;
+		position: relative;
+	}
+	header#site-header > div > div{
+		padding: 0;
+	}
+	header#site-header *{
+		overflow: visible;
+	}
+	nav#site-nav{
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 100%;
+		border-top: 4px solid #61a7e9;
+		background-color: #FFF;
+		padding: 5px 0;
+		display: none;
+	}
+
+	header#site-header nav a{
+		padding: 10px 0;
+		margin: 0;
+		display: block;
+		text-align: center;
+	}
+	a.hide-menu{
+		display: inline-block;
+		vertical-align: middle;
+		zoom: 1; /* Fix for IE7 */
+		*display: inline; /* Fix for IE7 */
+	}
+	a.hide-menu .fa{
+		font-size: 28px;
+	}
+	#bloco-servicos .bloco-servico > a > img{
+		max-width: 100%;
+		height: auto;
+	}
+	#bloco-servicos h2{
+		font-size: 1.2em;
+	}
+}
+
+
+@media screen and (max-width: 767px){
+	#mapa-contato{
+		position: relative;
+	}
+
+	#servicos-area .margem{
+		display: none;
+	}
+
+	#servicos-area .grid-50{
+		margin-top: 50px;
+	}
+
+	#mapa-contato:after{
+		content: " ";
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 500;
+	}
+	header#site-header a.logo img.logo-desk{
+		display: none;
+	}
+	header#site-header a.logo img.logo-mobile{
+		display: block;
+	}
+
+	#banner-home{
+		padding: 40px 0;
+	}
+
+	#banner-home .btn-a{
+		margin-bottom: 15px;
+	}
+
+	#bloco-servicos .bg-servicos{
+		height: 100%;
+	}
+
+	#bloco-servicos h1.title.border{
+		color: #FFF;
+	}
+
+	#bloco-servicos .bloco-servico > a > img{
+		max-width: 100%;
+		height: auto;
+	}
+
+	#bloco-servicos .grid-20{
+		margin-bottom: 30px;
+	}
+	#bloco-servicos .grid-20:last-child{
+		margin-bottom: 0;
+	}
+	#bloco-contato{
+		padding: 30px 0;
+	}
+	#bloco-contato img{
+		display: none;
+	}
+	#bloco-contato h1{
+		margin-top: 0;
+		margin-bottom: 15px;
+	}
+	#bloco-contato span.ib{
+		margin-bottom: 15px;
+		display: block;
+	}
+	.hide-mobile{
+		display: none;
+	}
+	#topo-interna{
+		padding: 30px 0;
+	}
+	#topo-interna img{
+		max-width: 100px;
+		margin-bottom: 0;
+		vertical-align: middle;
+	}
+	#topo-interna h1{
+		font-size: 1.5em;
+		padding-top: 0;
+		vertical-align: middle;
+	}
+
+	#breadcrumb .grid-100{
+		padding-left: 15px;
+	}
+
+	#conteudo-empresa .grid-50{
+		margin-bottom: 30px;
+	}
+	#conteudo-empresa .grid-50:last-child{
+		margin-bottom: 0;
+	}	
+	.bloco-home{
+		padding: 30px 0;
+	}
+	#site-footer #mapa-site > div > div{
+		margin-bottom: 30px;
+	}
+	#site-footer #mapa-site > div > div:last-child{
+		margin-bottom: 0;
+	}
+	#site-footer #mapa-site h1{
+		margin-bottom: 15px;
+	}
+	form#pagina-contato{
+		padding: 15px;
+	}
+	#bloco-contato-pagina p img{
+		margin-right: 15px;
+		margin-bottom: 15px;
+	}
+	#bloco-contato-pagina p{
+		margin-bottom: 30px;
+		text-align: left;
+	}
+
+	#bloco-contato-pagina p:last-child{
+		margin-bottom: 0;
+	}
+	.prox-turmas-container{
+		overflow-x: auto;
+		padding-bottom: 30px;
+	}
+	table#proximas-turmas{
+		min-width: 800px; 
+	}
+	#inscrever-treinamento .btn-a{
+		margin-bottom: 30px;
+	}
+	.post-dicas img.fullimg{
+		margin-bottom: 15px;
+	}
+	h1.titulo-area{
+		font-size: 1.8em;
+	}
+	.destaque-maior-area{
+		padding: 30px 0;
+	}
+	.destaque-maior-area .txt-destaque-area h3{
+		font-size: 1.2em;
+	}
+
+	.max-img-cont{
+		text-align: center;
+	}
+
+	.max-img-cont > img{
+		max-width: 158px;
+		height: auto;
+		display: inline-block;
+		zoom: 1; /* Fix for IE7 */
+		*display: inline; /* Fix for IE7 */
+	}
+
+	#servicos-area h2{
+		text-align: center;
+	}
+}

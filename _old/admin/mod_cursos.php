@@ -1,0 +1,427 @@
+<?php
+/**
+ * Project:     GERENCIADOR DE SITES
+ * File:        MOD_CURSOS.PHP
+ * 
+ * @author Diógenes Konrad Götz
+ * @copyright Götz & Konrad
+ * @link http://www.gotz.com.br
+ */
+
+/**
+ * VERIFICA AS PERMISSOES DE ACESSO
+ */
+$builder = new QueryBuilder();
+$builder->setTable('vw_adminpermissions');
+$builder->addColumn('usrinsert');
+$builder->addColumn('usrupdate');
+$builder->addColumn('usrdelete');
+$builder->setWhere('usr_code='.$_SESSION['data']['usrcode'].' AND module_code='.$page);
+$permissions = $conn->sql_fetchrow($conn->sql_query($builder->buildQuery()));
+
+/**
+ * CADASTRO DE CURSOS
+ */
+if (!$_GET['option'])
+{
+
+	$nome_curso    = (string) $_POST['nome_curso'];
+	$programa      = (string) $_POST['programa'];
+	$objetivo      = (string) $_POST['objetivo'];
+	$metodologia   = (string) $_POST['metodologia'];
+	$depoimentos   = (string) $_POST['depoimentos'];
+	$publico_alvo  = (string) $_POST['publico_alvo'];
+	$carga_horaria = (string) $_POST['carga_horaria'];
+	$instrutor     = (string) $_POST['instrutor'];
+	$minicuriculo  = (string) $_POST['minicurriculo'];
+	$investimento  = (string) $_POST['investimento'];
+	$incluido      = (string) $_POST['incluido'];
+	$ordem         = (int) $_POST['ordem'];
+	$dt_workshop   = (string) $_POST['dt_workshop'];
+	$workshop      = (string) $_POST['workshop'];
+
+	/**
+	 * REMOVE O CURSO
+	 */
+	if ($_POST['curso_code'])
+	{
+		if (!$permissions['usrdelete']) $error='Você não tem permissões para executar esta ação';
+		else
+		{
+			$builder = new QueryBuilder('delete');
+			$builder->setTable('mod_cursos');
+			$builder->setWhere("code={$_POST['curso_code']}");
+			if ($conn->sql_query($builder->buildQuery())) $display='Curso excluído com sucesso';
+			else $error='Ocorreu um erro ao tentar excluir o curso';
+		}
+	}
+
+	/**
+	 * ADICIONA UM NOVO CURSO
+	 */
+	if (isset($_POST['salvar']))
+	{
+		if (!$permissions['usrinsert']) $error='Você não tem permissões para executar esta ação';
+		else
+		{
+			if (!$nome_curso) $error='Informe o nome do curso';
+			#elseif (!$programa) $error='Informe o programa';
+			#elseif (!$objetivo) $error='Informe o objetivo';
+			#elseif (!$metodologia) $error='Informe a metodologia';
+			#elseif (!$publico_alvo) $error='Informe o público-alvo';
+			#elseif (!$carga_horaria) $error='Informe a carga horária';
+			#elseif (!$instrutor) $error='Informe o instrutor';
+			#elseif (!$investimento) $error='Informe o investimento';
+			else
+			{
+				/**
+				 * VERIFICA SE O CURSO NÃO EXISTE
+				 */
+				$builder = new QueryBuilder();
+				$builder->setTable('mod_cursos');
+				$builder->addColumn('code');
+				$builder->setWhere("nome_curso='{$nome_curso}'");
+				$conn->sql_query($builder->buildQuery());
+				if ($conn->sql_numrows()) $error='Curso já cadastrado!';
+				else
+				{
+					$builder = new QueryBuilder('insert');
+					$builder->setTable('mod_cursos');
+					$builder->addColumn('nome_curso');
+					$builder->addColumn('programa');
+					$builder->addColumn('objetivo');
+					$builder->addColumn('metodologia');
+					$builder->addColumn('depoimentos');
+					$builder->addColumn('publico_alvo');
+					$builder->addColumn('carga_horaria');
+					$builder->addColumn('instrutor');
+					$builder->addColumn('minicurriculo');
+					$builder->addColumn('investimento');
+					$builder->addColumn('material_incluido');
+					$builder->addColumn('ordem');
+					$builder->addColumn('data_workshop');
+					$builder->addColumn('descricao_workshop');
+					$builder->addValue("'{$nome_curso}'");
+					$builder->addValue("'{$programa}'");
+					$builder->addValue("'{$objetivo}'");
+					$builder->addValue("'{$metodologia}'");
+					$builder->addValue("'{$depoimentos}'");
+					$builder->addValue("'{$publico_alvo}'");
+					$builder->addValue("'{$carga_horaria}'");
+					$builder->addValue("'{$instrutor}'");
+					$builder->addValue("'{$minicuriculo}'");
+					$builder->addValue("'{$investimento}'");
+					$builder->addValue("'{$incluido}'");
+					$builder->addValue("'{$ordem}'");
+					$builder->addValue("'".date("m-d-Y", strtotime(str_replace("/", "-", $dt_workshop)))."'");
+					$builder->addValue("'{$workshop}'");
+					if (!$conn->sql_query($builder->buildQuery())) $error='Ocorreu um erro ao tentar adicionar o curso';
+					else
+					{
+						$display='Curso adicionado com sucesso';
+						unset($_POST);
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * ATUALIZA O CURSO
+	 */
+	if (isset($_GET['curso_code']))
+	{
+		if (isset($_POST['update']))
+		{
+			if (!$permissions['usrupdate']) $error='Você não tem permissões para executar esta ação';
+			else
+			{
+				if (!$nome_curso) $error='Informe o nome do curso';
+				#elseif (!$programa) $error='Informe o programa';
+				#elseif (!$objetivo) $error='Informe o objetivo';
+				#elseif (!$metodologia) $error='Informe a metodologia';
+				#elseif (!$publico_alvo) $error='Informe o público-alvo';
+				#elseif (!$carga_horaria) $error='Informe a carga horária';
+				#elseif (!$instrutor) $error='Informe o instrutor';
+				#elseif (!$investimento) $error='Informe o investimento';
+				else
+				{
+					/**
+					 * VERIFICA SE O CURSO NÃO EXISTE
+					 */
+					$builder = new QueryBuilder();
+					$builder->setTable('mod_cursos');
+					$builder->addColumn('code');
+					$builder->setWhere("nome='{$nome_curso}' AND code<>{$_GET['curso_code']}");
+					$conn->sql_query($builder->buildQuery());
+					if ($conn->sql_numrows()) $error='Curso já cadastrado!';
+					else
+					{
+						$builder = new QueryBuilder('update');
+						$builder->setTable('mod_cursos');
+						$builder->addColumn('nome_curso');
+						$builder->addColumn('programa');
+						$builder->addColumn('objetivo');
+						$builder->addColumn('metodologia');
+						$builder->addColumn('depoimentos');
+						$builder->addColumn('publico_alvo');
+						$builder->addColumn('carga_horaria');
+						$builder->addColumn('instrutor');
+						$builder->addColumn('minicurriculo');
+						$builder->addColumn('investimento');
+						$builder->addColumn('material_incluido');
+						$builder->addColumn('ordem');
+						$builder->addColumn('data_workshop');
+						$builder->addColumn('descricao_workshop');
+						$builder->addValue("'{$nome_curso}'");
+						$builder->addValue("'{$programa}'");
+						$builder->addValue("'{$objetivo}'");
+						$builder->addValue("'{$metodologia}'");
+						$builder->addValue("'{$depoimentos}'");
+						$builder->addValue("'{$publico_alvo}'");
+						$builder->addValue("'{$carga_horaria}'");
+						$builder->addValue("'{$instrutor}'");
+						$builder->addValue("'{$minicuriculo}'");
+						$builder->addValue("'{$investimento}'");
+						$builder->addValue("'{$incluido}'");
+						$builder->addValue("'{$ordem}'");
+						$builder->addValue(($dt_workshop)?"'".date("m-d-Y", strtotime(str_replace("/", "-", $dt_workshop)))."'":"null");
+						$builder->addValue("'{$workshop}'");
+						$builder->setWhere("code={$_GET['curso_code']}");
+						if (!$conn->sql_query($builder->buildQuery())) $error='Ocorreu um erro ao tentar atualizar o curso';
+						else $display='Curso atualizado com sucesso';
+					}
+				}
+			}
+		}
+
+		/**
+		 * SELECIONA O CURSO
+		 */
+		$builder = new QueryBuilder();
+		$builder->setTable('mod_cursos');
+		$builder->addColumn('nome_curso');
+		$builder->addColumn('programa');
+		$builder->addColumn('objetivo');
+		$builder->addColumn('metodologia');
+		$builder->addColumn('depoimentos');
+		$builder->addColumn('publico_alvo');
+		$builder->addColumn('carga_horaria');
+		$builder->addColumn('instrutor');
+		$builder->addColumn('minicurriculo');
+		$builder->addColumn('investimento');
+		$builder->addColumn('material_incluido');
+		$builder->addColumn('ordem');
+		$builder->addColumn('data_workshop');
+		$builder->addColumn('descricao_workshop');
+		$builder->setWhere("code={$_GET['curso_code']}");
+		$tmp = $conn->sql_fetchrow($conn->sql_query($builder->buildQuery()));
+		if (!$conn->sql_numrows())
+		{
+			$error='Curso não encontrado';
+			$permissions['usrupdate'] = false;
+		}
+		else
+		{
+			$_POST['nome_curso']    = $tmp['nome_curso'];
+			$_POST['programa']      = $tmp['programa'];
+			$_POST['objetivo']      = $tmp['objetivo'];
+			$_POST['metodologia']   = $tmp['metodologia'];
+			$_POST['depoimentos']   = $tmp['depoimentos'];
+			$_POST['publico_alvo']  = $tmp['publico_alvo'];
+			$_POST['carga_horaria'] = $tmp['carga_horaria'];
+			$_POST['instrutor']     = $tmp['instrutor'];
+			$_POST['minicurriculo'] = $tmp['minicurriculo'];
+			$_POST['investimento']  = $tmp['investimento'];
+			$_POST['incluido']      = $tmp['material_incluido'];
+			$_POST['ordem']         = $tmp['ordem'];
+			if($tmp['data_workshop']) { $_POST['dt_workshop'] = date("d/m/Y", strtotime($tmp['data_workshop'])); }
+			$_POST['workshop']      = $tmp['descricao_workshop'];
+		}
+	}
+
+	/**
+	 * SELECIONA OS CURSOS
+	 */
+	$builder = new QueryBuilder();
+	$builder->setTable('mod_cursos');
+	$builder->addColumn('code');
+	$builder->addColumn('nome_curso');
+	$builder->setOrderBy('code');
+	$cursos = $conn->sql_fetchrowset($conn->sql_query($builder->buildQuery()));
+	$smarty->assign('cursos', $cursos);
+}
+
+/**
+ * CADASTRO DE TURMAS
+ */
+elseif ($_GET['option'] == 1)
+{
+	$cidade      = (string) $_POST['cidade'];
+	$local       = (string) $_POST['local'];
+	$horario     = (string) $_POST['horario'];
+	$localizacao = (string) $_POST['localizacao'];
+	$dt_inicio   = (string) $_POST['dt_inicio'];
+	$dt_termino  = (string) $_POST['dt_termino'];
+	$confirmada  = (int) $_POST['confirmada'];
+
+	/**
+	 * REMOVE A TURMA
+	 */
+	if ($_POST['turma_code'])
+	{
+		if (!$permissions['usrdelete']) $error='Você não tem permissões para executar esta ação';
+		else
+		{
+			$builder = new QueryBuilder('delete');
+			$builder->setTable('mod_turmas');
+			$builder->setWhere("code={$_POST['turma_code']}");
+			if ($conn->sql_query($builder->buildQuery())) $display='Turma excluída com sucesso';
+			else $error='Ocorreu um erro ao tentar excluir a turma';
+		}
+	}
+
+	/**
+	 * ADICIONA UM NOVA TURMA
+	 */
+	if (isset($_POST['salvar']) && $_GET['curso_code'])
+	{
+		if (!$permissions['usrinsert']) $error='Você não tem permissões para executar esta ação';
+		else
+		{
+			if (!$cidade) $error='Informe a cidade';
+			elseif (!$local) $error='Informe o local';
+			#elseif (!$horario) $error='Informe o horário';
+			#elseif (!$localizacao) $error='Informe a localização';
+			elseif (!$dt_inicio) $error='Informe a data de início da turma';
+			elseif ($dt_inicio && !defaultValid::checkDate($dt_inicio)) $error='Data de início da turma inválida';
+			elseif (defaultValid::checkDate($dt_inicio, 1) < date('Ymd')) $error='Data de início da turma não pode ser menor que a data atual';
+			elseif (!$dt_termino) $error='Informe a data de término da turma';
+			elseif (defaultValid::checkDate($dt_termino, 1) < defaultValid::checkDate($dt_inicio, 1)) $error='A data de término não pode ser menor que a data de início da turma';
+			else
+			{
+				$builder = new QueryBuilder('insert');
+				$builder->setTable('mod_turmas');
+				$builder->addColumn('curso_code');
+				$builder->addColumn('cidade');
+				$builder->addColumn('local');
+				$builder->addColumn('horario');
+				$builder->addColumn('localizacao');
+				$builder->addColumn('dt_inicio');
+				$builder->addColumn('dt_termino');
+				$builder->addValue("'{$_GET['curso_code']}'");
+				$builder->addValue("'{$cidade}'");
+				$builder->addValue("'{$local}'");
+				$builder->addValue("'{$horario}'");
+				$builder->addValue("'{$localizacao}'");
+				$builder->addValue("'".date("m-d-Y", strtotime(str_replace("/", "-", $dt_inicio)))."'");
+				$builder->addValue("'".date("m-d-Y", strtotime(str_replace("/", "-", $dt_termino)))."'");
+				if (!$conn->sql_query($builder->buildQuery())) $error='Ocorreu um erro ao tentar adicionar a turma';
+				else
+				{
+					$display='Turma adicionada com sucesso';
+					unset($_POST);
+				}
+			}
+		}
+	}
+
+	/**
+	 * ATUALIZA A TURMA
+	 */
+	if (isset($_GET['turma_code']))
+	{
+		if (isset($_POST['update']))
+		{
+			if (!$permissions['usrupdate']) $error='Você não tem permissões para executar esta ação';
+			else
+			{
+				if (!$cidade) $error='Informe a cidade';
+				elseif (!$local) $error='Informe o local';
+				#elseif (!$horario) $error='Informe o horário';
+				#elseif (!$localizacao) $error='Informe a localização';
+				elseif (!$dt_inicio) $error='Informe a data de início da turma';
+				elseif ($dt_inicio && !defaultValid::checkDate($dt_inicio)) $error='Data de início da turma inválida';
+				elseif (defaultValid::checkDate($dt_inicio, 1) < date('Ymd')) $error='Data de início da turma não pode ser menor que a data atual';
+				elseif (!$dt_termino) $error='Informe a data de término da turma';
+				elseif (defaultValid::checkDate($dt_termino, 1) < defaultValid::checkDate($dt_inicio, 1)) $error='A data de término não pode ser menor que a data de início da turma';
+				else
+				{
+					$confirmada = ($confirmada)?'t':'f';
+					$builder = new QueryBuilder('update');
+					$builder->setTable('mod_turmas');
+					$builder->addColumn('cidade');
+					$builder->addColumn('local');
+					$builder->addColumn('horario');
+					$builder->addColumn('localizacao');
+					$builder->addColumn('dt_inicio');
+					$builder->addColumn('dt_termino');
+					$builder->addColumn('confirmada');
+					$builder->addValue("'{$cidade}'");
+					$builder->addValue("'{$local}'");
+					$builder->addValue("'{$horario}'");
+					$builder->addValue("'{$localizacao}'");
+					$builder->addValue("'".date("m-d-Y", strtotime(str_replace("/", "-", $dt_inicio)))."'");
+					$builder->addValue("'".date("m-d-Y", strtotime(str_replace("/", "-", $dt_termino)))."'");
+					$builder->addValue("'{$confirmada}'");
+					$builder->setWhere("code={$_GET['turma_code']}");
+					if (!$conn->sql_query($builder->buildQuery())) $error='Ocorreu um erro ao tentar atualizar a turma';
+					else $display='Turma atualizada com sucesso';
+				}
+			}
+		}
+
+		/**
+		 * SELECIONA A TURMA
+		 */
+		$builder = new QueryBuilder();
+		$builder->setTable('mod_turmas');
+		$builder->addColumn('cidade');
+		$builder->addColumn('local');
+		$builder->addColumn('horario');
+		$builder->addColumn('localizacao');
+		$builder->addColumn('dt_inicio');
+		$builder->addColumn('dt_termino');
+		$builder->addColumn('confirmada');
+		$builder->setWhere("code={$_GET['turma_code']}");
+		$tmp = $conn->sql_fetchrow($conn->sql_query($builder->buildQuery()));
+		if (!$conn->sql_numrows())
+		{
+			$error='Turma não encontrada';
+			$permissions['usrupdate'] = false;
+		}
+		else
+		{
+			$_POST['cidade']      = $tmp['cidade'];
+			$_POST['local']       = $tmp['local'];
+			$_POST['horario']     = $tmp['horario'];
+			$_POST['localizacao'] = $tmp['localizacao'];
+			$_POST['dt_inicio']   = $tmp['dt_inicio'];
+			$_POST['dt_termino']  = $tmp['dt_termino'];
+			$_POST['confirmada']  = ($tmp['confirmada'] == 't')?true:false;
+		}
+
+	}
+
+
+
+	/**
+	 * SELECIONA AS TURMAS CADASTRADAS
+	 */
+	$builder = new QueryBuilder();
+	$builder->setTable('mod_turmas');
+	$builder->addColumn('code');
+	$builder->addColumn('cidade');
+	$builder->addColumn('local');
+	$builder->addColumn('dt_inicio');
+	$builder->addColumn('dt_termino');
+	$builder->setWhere("curso_code={$_GET['curso_code']}");
+	$turmas = $conn->sql_fetchrowset($conn->sql_query($builder->buildQuery()));
+	$smarty->assign('turmas', $turmas);
+}
+
+$smarty->assign('display', $display);
+$smarty->assign('error', $error);
+$smarty->assign('permissions', $permissions);
+$smarty->display('mod_cursos.htm');
+?>

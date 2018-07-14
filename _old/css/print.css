@@ -1,0 +1,18 @@
+div#menu-topo, div#header, div#menu, div#rodape, div#menu-home, h1, 
+div#busca_abcd, div#conteudos input, textarea, div#agenda #reserva { display:none; }
+
+.sIFR-flash, .sIFR-flash object, .sIFR-flash embed {
+	display: none !important;
+	height: 0;
+	width: 0;
+	position: absolute;
+	overflow: hidden;
+}
+
+span.sIFR-alternate {
+	visibility: visible !important;
+	display: block !important;
+	position: static !important;
+	left: auto !important;
+	top: auto !important;
+}

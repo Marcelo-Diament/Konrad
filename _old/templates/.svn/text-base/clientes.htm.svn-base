@@ -1,0 +1,20 @@
+<h1>{{menuinterno}}</h1>
+<h2>Clientes</h2>
+
+<div id="busca_abcd">
+	<ul>
+		<li><a href="{{$rootfolder}}/clientes/outros/">#</a></li>
+		{{section name=foo loop=26 start=0}}
+		<li><a href="{{$rootfolder}}/clientes/{{$smarty.section.foo.iteration+96|chr}}/">{{$smarty.section.foo.iteration+64|chr}}</a></li>	
+		{{/section}}
+		<li><a href="{{$rootfolder}}/clientes/">Listar todos</a></li>
+	</ul>
+</div>
+
+<ul class="clientes">
+{{section name=i loop=$clientes}}
+{{assign var="content" value=$clientes[i].description|escape:'html'}}
+<li>{{$clientes[i].name|escape:'html'}}:
+<p>{{$content|nl2br}}</p></li>
+{{/section}}
+</ul>

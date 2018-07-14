@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title>Gerenciador de websites</title>
+	<style type="text/css">
+	<!--
+		@import url("css/admin.css");
+	-->
+	</style>
+	<script language="JavaScript" type="text/javascript" src="javascript/defaultl.js"></script>
+</head>
+<body>
+<table width="100%" style="height:100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center" valign="top">
+		<table width="90%" border="0" cellpadding="0" cellspacing="0" class="table">
+		  <tr valign="middle">
+			<td height="28" colspan="5" class="topo"><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="font-weight:bold; color:#FFF;">Administração :: Konrad</td>
+                <td align="right"><a href="." style="color:#FFF">Menu principal</a></td>
+              </tr>
+            </table></td>
+		  </tr>
+		  <tr>
+			<td width="15" height="10"></td>
+			<td width="498"></td>
+			<td width="10"></td>
+		  </tr>
+		  <tr>
+			<td height="10"></td>
+			<td valign="top" class="{{if $error}}error{{else}}display{{/if}}">{{if $error}}<img src="images/alert.gif" align="baseline">&nbsp;{{/if}}{{$error|default:$display}}
+			</td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td height="13"></td>
+			<td></td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td height="92"></td>
+			<td valign="top">
+			<fieldset>
+			<legend><img src="images/thumb_mod_users.gif" align="middle">&nbsp;Buscar Inscrição&nbsp;</legend>
+			<form action="" method="post" name="busca_cliente">
+			<input type="hidden" name="busca" value="1">
+			   <table width="100%" border="0" cellpadding="1" cellspacing="1" class="form">
+				<tr>
+				  <td width="100">Curso/Turma :</td>
+				  <td>
+				  	<select name="turma">
+				  		<option value="">Selecione</option>
+				  	 {{section name=i loop=$cursos}}
+				  	 <optgroup label="{{$cursos[i].nome_curso}}">
+				  	 	{{section name=j loop=$cursos[i].turmas}}
+				  			<option value="{{$cursos[i].turmas[j].code}}">{{$cursos[i].turmas[j].cidade}} - {{$cursos[i].turmas[j].dt_inicio|date_format:"%d/%m/%Y"}} à {{$cursos[i].turmas[j].dt_termino|date_format:"%d/%m/%Y"}}</option>
+				  		{{/section}} 
+				  	 </optgroup>
+				  	
+				  	{{/section}}
+				  	</select>				
+				</tr>
+				<tr><td align="right" colspan="2">
+				<input type="submit" value="Buscar" onClick="submit(); this.value='Processando...'; this.disabled=true;" {{if !$permissions.usrupdate}}disabled{{/if}}>
+				<input type="button" value="Sair" onClick="redirect('?page={{$smarty.get.page}}&inscricoes_code={{$smarty.post.code}}&option=1')">
+				</td></tr>
+			  </table>
+		    </form>
+			</fieldset>
+			</td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td height="92"></td>
+			<td valign="top">
+            <br><br>
+			{{if $smarty.get.inscricoes_code}}
+			<fieldset>
+			<legend><img src="images/thumb_mod_users.gif" align="middle">&nbsp;Editar o cliente&nbsp;</legend>
+			<form action="" method="post" name="update_cliente">
+			<input type="hidden" name="update" value="1">
+			   <table width="100%" border="0" cellpadding="1" cellspacing="1" class="form">
+			    <tr>
+				  <td width="100">Nome :</td>
+				  <td ><input name="nome" type="text" size="60" maxlength="100" value="{{$smarty.post.nome}}">					
+				</tr>
+				<tr>
+				  <td width="100">Empresa :</td>
+				  <td ><input name="empresa" type="text" size="60" maxlength="100" value="{{$smarty.post.empresa}}">					
+				</tr>
+				<tr>
+				  <td width="100">Cargo :</td>
+				  <td ><input name="cargo" type="text" size="60" maxlength="100" value="{{$smarty.post.cargo}}">					
+				</tr>
+				<tr>
+				  <td width="100">Email :</td>
+				  <td ><input name="email" type="text" size="60" maxlength="100" value="{{$smarty.post.email}}">					
+				</tr>
+				<tr>
+				  <td width="100">Telefone :</td>
+				  <td ><input name="telefone" type="text" size="60" maxlength="100" value="{{$smarty.post.telefone}}">					
+				</tr>
+				<tr>
+				  <td width="100">Endereço :</td>
+				  <td ><input name="endereco" type="text" size="60" maxlength="100" value="{{$smarty.post.endereco}}">					
+				</tr>
+				<tr>
+				  <td width="100">Estado :</td>
+				  <td>
+				  	<select name="estado">
+				  	<option>Selecione</option>
+				  		<option value="">Selecione</option>
+				  	 {{section name=i loop=$estados}}
+				  	
+				  	<option value="{{$estados[i].code}}" {{if $estados[i].code == $smarty.post.estado }} selected="selected" {{/if}}>{{$estados[i].extenso}}</option>
+				  	{{/section}}
+				  	</select>				
+				</tr>
+				<tr>
+				  <td width="100">Cidade :</td>
+				  <td ><input name="cidade" type="text" size="60" maxlength="100" value="{{$smarty.post.cidade}}">					
+				</tr>
+				<tr>
+				  <td width="100">CEP :</td>
+				  <td ><input name="cep" type="text" size="60" maxlength="100" value="{{$smarty.post.cep}}">					
+				</tr>
+				<tr><td align="right" colspan="2">
+				<input type="submit" value="Salvar" onClick="submit(); this.value='Processando...'; this.disabled=true;" {{if !$permissions.usrupdate}}disabled{{/if}}>
+				<input type="button" value="Sair" onClick="redirect('{{"?page=`$smarty.get.page`&inscricoes_code=`$smarty.post.code`&option=1"|secureurl}}')">
+				</td></tr>
+			  </table>
+		    </form>
+			</fieldset>
+			{{/if}}
+			</td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td height="25"></td>
+			<td>&nbsp;</td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td height="95"></td>
+			<td valign="top">
+			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="form">
+				<tr>
+				  <td width="100%" height="86" valign="top">
+					<fieldset>
+                  <legend>Inscrições&nbsp;</legend>
+					<form name="clientes_list" method="post" action="">
+					<input type="hidden" name="inscricoes_code">
+					<input type="hidden" name="option">
+                    <table border="0" cellpadding="0" cellspacing="0" class="grid">
+                      <tr class="ordenado"> 
+                        <td width="100">&nbsp;C&oacute;digo</td>
+                        <td>Nome</td>
+                        <td>Curso</td>
+                        <td>Turma</td>
+                        <td width="20">&nbsp;</td>
+                      </tr>
+                      <tr> 
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+                      </tr>
+                      {{section name=i loop=$inscricoes}}
+                      <tr onMouseOver="mOvr(this,'#EFEFEF')" onMouseOut="mOut(this,'{{if $inscricoes[i].code == $smarty.get.cliente_code}}#DBF1FD{{else}}#FFFFFF{{/if}}')" {{if $inscricoes[i].code == $smarty.get.cliente_code}}bgcolor="#DBF1FD"{{/if}}> 
+                        <td onClick="redirect('{{"?page=`$smarty.get.page`&inscricoes_code=`$inscricoes[i].code`&option=1"|secureurl}}')">&nbsp;{{$inscricoes[i].code}}</td>
+                        <td onClick="redirect('{{"?page=`$smarty.get.page`&inscricoes_code=`$inscricoes[i].code`&option=1"|secureurl}}')">&nbsp;{{$inscricoes[i].nome|escape:'html'}}</td>
+                        <td onClick="redirect('{{"?page=`$smarty.get.page`&inscricoes_code=`$inscricoes[i].code`&option=1"|secureurl}}')">&nbsp;{{$inscricoes[i].curso_nome|escape:'html'}}</td>
+                        <td onClick="redirect('{{"?page=`$smarty.get.page`&inscricoes_code=`$inscricoes[i].code`&option=1"|secureurl}}')">&nbsp;{{$inscricoes[i].cidade_turma}} - {{$inscricoes[i].dt_inicio|date_format:"%d/%m/%Y"}} à {{$inscricoes[i].dt_termino|date_format:"%d/%m/%Y"}}</td>
+                        <td><input name="delete" type="image" onClick="if(!confirm('Deseja remover a inscrição ({{$inscricoes[i].nome|addslashes|escape:'html'}}) ?')){ return false} else{inscricoes_code.value='{{$inscricoes[i].code}}';option.value=1};" src="images/delete_{{if $inscricoes[i].code != $smarty.get.cliente_code && $permissions.usrdelete}}true{{else}}false{{/if}}.gif" style="width:15px; height:16px;" {{if $inscricoes[i].code == $smarty.get.cliente_code || !$permissions.usrdelete}}disabled{{/if}}></td>
+                      </tr>
+                      {{sectionelse}}
+                      <tr> 
+                        <td colspan="5" align="center">Nenhuma inscrição cadastrada</td>
+                      </tr>
+                      {{/section}}
+                      <tr> 
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+                      </tr>
+                    </table>
+					</form>
+					</fieldset></td>
+				</tr>
+			  </table></td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td height="23"></td>
+			<td align="right">&nbsp;</td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td height="23"></td>
+			<td align="right"><a href="."><img src="images/back.gif" alt="Voltar" width="32" height="32" border="0"></a></td>
+			<td></td>
+		  </tr>
+		  <tr>
+          <td height="57" colspan="5" valign="middle" class="copyright">
+				Resolu&ccedil;&atilde;o m&iacute;nima de 800x600 &copy; Copyright {{ $smarty.now|date_format:'%Y'}}, Konrad<br>
+				<a href="http://www.gotz.com.br" target="_blank">Http://www.gotz.com.br</a>
+			</td>
+		  </tr>
+		</table>
+		</td>
+  </tr>
+</table>
+</body>
+</html>
