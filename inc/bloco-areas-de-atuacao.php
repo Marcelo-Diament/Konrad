@@ -1,7 +1,7 @@
 <div id="bloco-areas-de-atuacao" class="bloco-home">
 	<div class="grid-container">
 		<div class="grid-100">
-			<h1 class="title ac border"><a href="<?php local(); ?>areas-de-atuacao/"></a>Áreas de <b>Atuação</b></h1>
+			<h2 class="title ac border"><a href="<?php local(); ?>areas-de-atuacao/"></a>Áreas de <b>Atuação</b></h2>
 		</div>
 		<?php 
 

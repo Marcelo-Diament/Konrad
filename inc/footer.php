@@ -10,15 +10,15 @@
 
 			<div class="grid-15">
 
-				<h1>Institucional</h1>				
+				<h2>Institucional</h2>				
 
-				<a href="<?php local(); ?>empresa/" class="bl <?php checkPage('empresa'); ?>">A Empresa</a>
+				<a href="<?php local(); ?>empresa/" class="bl <?php checkPage('empresa'); ?>">Quem Somos</a>
 
 				<a href="<?php local(); ?>depoimentos/" class="bl <?php checkPage('depoimentos'); ?>">Depoimentos</a>
 
 				<a href="<?php local(); ?>clientes/" class="bl <?php checkPage('clientes'); ?>">Clientes</a>
 
-				<a href="<?php local(); ?>dicas/" class="bl <?php checkPage('dicas'); ?><?php checkPage('dica'); ?>">Dicas</a>
+				<a href="<?php local(); ?>dicas/" class="bl <?php checkPage('dicas'); ?><?php checkPage('dica'); ?>">Blog</a>
 
 				<a href="<?php local(); ?>contato/" class="bl <?php checkPage('contato'); ?>">Fale conosco</a>
 
@@ -26,7 +26,7 @@
 
 			<div class="grid-15">
 
-				<h1>Serviços</h1>
+				<h2>Serviços</h2>
 
 				<?php 
 
@@ -56,7 +56,7 @@
 
 			<div class="grid-25">
 
-				<h1>Áreas de atuação</h1>
+				<h2>Áreas de atuação</h2>
 
 				<?php 
 
@@ -88,7 +88,7 @@
 
 				<div class="grid-100">
 
-					<h1>Contato</h1>
+					<h2>Contato</h2>
 
 				</div>
 

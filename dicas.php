@@ -2,7 +2,7 @@
 <html lang="pt-br" class="dicas">
 <head>
 	<?php include('./inc/head.php'); ?>
-	<title>Dicas | Konrad</title>
+	<title>Blog | Konrad</title>
 </head>
 <body>
 	<!-- Header -->
@@ -14,7 +14,7 @@
 			<div class="grid-container">
 				<div class="grid-100">
 					<img src="<?php local(); ?>img/common/ico-dicas.png" alt="" class="it ico-interna">
-					<h1 class="titulo-pagina it">Dicas da Konrad</h1>
+					<h1 class="titulo-pagina it">Blog</h1>
 				</div>
 			</div>
 		</div>
@@ -26,10 +26,10 @@
 
 					<?php if(!$_GET['arquivo'] && !$_GET['categoria'] && !$_GET['tag']){ ?>
 					<span class="im sep"><i class="fa fa-angle-right im"></i></span>
-					<span class="atual im">Dicas</span>
+					<span class="atual im">Blog</span>
 					<?php }else{ ?>
 					<span class="im sep"><i class="fa fa-angle-right im"></i></span>
-					<a href="<?php bloginfo('url'); ?>/dicas/" class="im">Dicas</a>
+					<a href="<?php bloginfo('url'); ?>/dicas/" class="im">Blog</a>
 					<?php }; ?>
 
 					<?php

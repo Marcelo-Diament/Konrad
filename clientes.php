@@ -33,7 +33,7 @@
 	<div id="conteudo-clientes" class="txt-interna bloco-home">
 		<div class="grid-container">
 			<div class="grid-100">
-				<h1 class="title ac border">Conheça nossos <b>clientes</b></h1>
+				<h2 class="title ac border">Conheça nossos <b>clientes</b></h2>
 			</div>
 			<div class="grid-100">
 				<p class="ac">Consultoria e Treinamentos para construtoras, indústrias de alimentos, laboratórios entre outros segmentos.</p>

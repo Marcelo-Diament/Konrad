@@ -60,7 +60,7 @@
 		<div class="grid-container">
 
 			<div class="grid-100">
-				<h1 class="title ac border">Sobre o <b>Treinamento</b></h1>
+				<h2 class="title ac border">Sobre o <b>Treinamento</b></h2>
 			</div>
 
 			<?php 
@@ -124,7 +124,7 @@
 	<div class="txt-interna bloco-home proximas-turmas border">
 		<div class="grid-container">
 			<div class="grid-100">
-				<h1 class="title ac border">Próximas <b>turmas</b></h1>
+				<h2 class="title ac border">Próximas <b>turmas</b></h2>
 			</div>
 
 			<?php $turmas = get_field('treinamentos_turmas', $treinamento->ID); ?>

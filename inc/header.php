@@ -47,10 +47,11 @@ $totaltel = count($konrad_telefones);
 
 					<nav id="site-nav" class="ar">
 						<a href="<?php local(); ?>" class="im <?php checkPage('index'); ?>">Home</a>
-						<a href="<?php local(); ?>empresa/" class="im <?php checkPage('empresa'); ?>">Empresa</a>
+						<a href="<?php local(); ?>empresa/" class="im <?php checkPage('empresa'); ?>">Quem Somos</a>
 						<a href="<?php local(); ?>servicos/" class="im <?php checkPage('servico'); ?><?php checkPage('servicos'); ?><?php checkPage('treinamento'); ?><?php checkPage('turma'); ?>">Serviços</a>
 						<a href="<?php local(); ?>areas-de-atuacao/" class="im <?php checkPage('area-de-atuacao'); ?><?php checkPage('areas-de-atuacao'); ?>">Áreas de Atuação</a>
 						<a href="<?php local(); ?>clientes/" class="im <?php checkPage('clientes'); ?>">Clientes</a>
+						<a href="<?php local(); ?>dicas/" class="im <?php checkPage('dicas'); ?><?php checkPage('dica'); ?>">Blog</a>
 						<a href="<?php local(); ?>contato/" class="im <?php checkPage('contato'); ?>">Contato</a>
 					</nav>
 				</div>

@@ -22,7 +22,7 @@ $img = $thumb[0];
 $post_atual = $post->ID;
 
 ?>
-	<title>Dica - <?php the_title(); ?> | Konrad</title>
+	<title><?php the_title(); ?> | Konrad</title>
 
 
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -52,7 +52,7 @@ $post_atual = $post->ID;
 			<div class="grid-container">
 				<div class="grid-100">
 					<img src="<?php local(); ?>img/common/ico-dicas.png" alt="" class="it ico-interna">
-					<h1 class="titulo-pagina it">Dicas da Konrad</h1>
+					<h2 class="titulo-pagina it">Blog</h2>
 				</div>
 			</div>
 		</div>
@@ -61,7 +61,7 @@ $post_atual = $post->ID;
 				<div class="grid-100">
 					<a href="<?php local(); ?>" class="im">Home</a>
 					<span class="im sep"><i class="fa fa-angle-right im"></i></span>
-					<a href="<?php local(); ?>dicas/" class="im">Dicas</a>
+					<a href="<?php local(); ?>dicas/" class="im">Blog</a>
 					<span class="im sep"><i class="fa fa-angle-right im"></i></span>
 					<span class="atual im"><?php the_title(); ?></span>
 				</div>

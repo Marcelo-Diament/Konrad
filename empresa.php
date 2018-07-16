@@ -2,7 +2,7 @@
 <html lang="pt-br" class="empresa">
 <head>
 	<?php include('./inc/head.php'); ?>
-	<title>Empresa | Konrad</title>
+	<title>Quem Somos | Konrad</title>
 </head>
 <body>
 	<!-- Header -->
@@ -14,7 +14,7 @@
 			<div class="grid-container">
 				<div class="grid-100">
 					<img src="<?php local(); ?>img/common/ico-empresa.png" alt="" class="it ico-interna">
-					<h1 class="titulo-pagina it">Empresa</h1>
+					<h1 class="titulo-pagina it">Quem Somos</h1>
 				</div>
 			</div>
 		</div>
@@ -23,7 +23,7 @@
 				<div class="grid-100">
 					<a href="<?php local(); ?>" class="im">Home</a>
 					<span class="im sep"><i class="fa fa-angle-right im"></i></span>
-					<span class="atual im">Empresa</span>
+					<span class="atual im">Quem Somos</span>
 				</div>
 			</div>
 		</div>
@@ -33,7 +33,7 @@
 	<div id="conteudo-empresa" class="txt-interna bloco-home">
 		<div class="grid-container">
 			<div class="grid-100">
-				<h1 class="title ac border">Sobre a <b>Konrad</b></h1>
+				<h2 class="title ac border">Sobre a <b>Konrad</b></h2>
 			</div>
 			
 			<?php 

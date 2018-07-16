@@ -4,7 +4,7 @@
 			<img src="<?php local(); ?>img/common/contato-home.png" alt="" class="fullimg"/>
 		</div>
 		<div class="grid-85">
-			<h1><a href="<?php local(); ?>contato/">Entre em <b>contato</b></a></h1>
+			<h2><a href="<?php local(); ?>contato/">Entre em <b>contato</b></a></h2>
 			<div class="ajfix">
 				<span class="ib">Telefones: <b><?php 
 								$contador = 1;

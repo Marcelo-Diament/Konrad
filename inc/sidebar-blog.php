@@ -2,7 +2,7 @@
 
 	<?php if(isset($_GET['categoria']) || isset($_GET['tag']) || isset($_GET['arquivo']) || isset($_GET['nome'])) : ?>
 	<div class="widget">
-		<a href="<?php local(); ?>dicas/" class="bl ac btn-a">Voltar para Dicas</a>
+		<a href="<?php local(); ?>dicas/" class="bl ac btn-a">Voltar para Blog</a>
 	</div>
 	<?php endif; ?>
 	<div class="widget">

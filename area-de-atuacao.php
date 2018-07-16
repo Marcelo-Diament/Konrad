@@ -85,7 +85,7 @@
 	<div id="conteudo-areas" class="txt-interna bloco-home">
 		<div class="grid-container">
 			<div class="grid-100">
-				<h1 class="title ac border">Serviços para empresas de <b class="lpc"><?php echo $areadeatuacao->post_title; ?></b></h1>
+				<h2 class="title ac border"><b class="lpc"><?php echo $areadeatuacao->post_title; ?></b></h2>
 			</div>
 			<div class="grid-100">
 				<p class="ac">
@@ -143,7 +143,7 @@
 	<div class="txt-interna bloco-home">
 		<div class="grid-container">
 			<div class="grid-100">
-				<h1 class="title ac border">Treinamentos na área de <b class="lpc"><?php echo $areadeatuacao->post_name; ?></b></h1>
+				<h2 class="title ac border">Treinamentos na área de <b class="lpc"><?php echo $areadeatuacao->post_name; ?></b></h2>
 			</div>
 			<div class="grid-100">
 				<p class="ac"><?php echo get_field('areas_de_atuacao_treinamentos_descricao', $areadeatuacao->ID); ?></p>
@@ -233,7 +233,7 @@
 	<div id="bloco-depoimentos" class="bloco-home">
 		<div class="grid-container">
 			<div class="grid-100">
-				<h1 class="titulo"><a href="<?php local(); ?>depoimentos/">O que nossos <b>clientes</b> dizem</a></h1>
+				<h2 class="titulo"><a href="<?php local(); ?>depoimentos/">O que nossos <b>clientes</b> dizem</a></h2>
 			</div>
 			
 			

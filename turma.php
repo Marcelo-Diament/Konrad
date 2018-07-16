@@ -83,7 +83,7 @@
 	<div class="txt-interna bloco-home bloco-treinamento-detalhes border">
 		<div class="grid-container">
 			<div class="grid-100">
-				<h1 class="title ac border">Treinamento em <b><?php echo $turmas_cidade; ?></b></h1>
+				<h2 class="title ac border">Treinamento em <b><?php echo $turmas_cidade; ?></b></h2>
 			</div>
 			<div class="grid-50">
 				<h2>Informações:</h2>
@@ -119,7 +119,7 @@
 	<div class="txt-interna bloco-home">
 		<div class="grid-container">
 			<div class="grid-100">
-				<h1 class="title ac border"><b>Inscreva-se</b></h1>
+				<h2 class="title ac border"><b>Inscreva-se</b></h2>
 			</div>
 
 			<form id="inscrever-treinamento" method="POST" action="<?php local() ?>ajax/email-curso.php">

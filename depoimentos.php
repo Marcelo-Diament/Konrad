@@ -47,7 +47,7 @@
 	<div id="conteudo-clientes" class="txt-interna bloco-home">
 		<div class="grid-container">
 			<div class="grid-100">
-				<h1 class="title ac border">O que nossos <b>clientes</b> dizem</h1>
+				<h2 class="title ac border">O que nossos <b>clientes</b> dizem</h2>
 			</div>
 		</div>
 

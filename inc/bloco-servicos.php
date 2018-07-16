@@ -2,7 +2,7 @@
 	<div class="bg-servicos"></div>
 	<div class="grid-container">
 		<div class="grid-100">
-			<h1 class="title ac border"><a href="<?php local(); ?>servicos/"></a>O que <b>fazemos</b></h1>
+			<h2 class="title ac border"><a href="<?php local(); ?>servicos/"></a>O que <b>fazemos</b></h2>
 		</div>
 		<?php 
 

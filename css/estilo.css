@@ -176,6 +176,10 @@ h2{
   font-size: 1.7em;
 }
 
+h2.title.ac.border{
+  font-size: 2.5em !important;
+}
+
 /* Header */
 header#site-header{
   padding: 18px 0 0;
@@ -227,7 +231,7 @@ header#site-header nav a{
   padding-bottom: 22px;
   position: relative;
   overflow: hidden;
-  margin-left: 30px;
+  margin-left: 15px;
 }
 
 header#site-header nav a.atual,
@@ -275,12 +279,12 @@ header#site-header .contato .fa-linkedin-square{
 }
 
 /* Serviços - Home */
-h1.title.border{
+h1.title.border, h2.title.border{
   padding-bottom: 30px;
   position: relative;
 }
 
-h1.title.border:after{
+h1.title.border:after, h2.title.border:after{
   content: " ";
   display: block;
   position: absolute;
@@ -297,7 +301,7 @@ h1.title.border:after{
           transition: all .25s ease;
 }
 
-h1.title.border:hover:after{
+h1.title.border:hover:after, h2.title.border:hover:after{
   width: 120px;
   margin-left: -60px;
 }
@@ -312,7 +316,7 @@ h1.title.border:hover:after{
   width: 100%;
   height: 365px;
   bottom: 0;
-  background-image: url('../img/common/bg-serv.png');
+  background-image: url('../img/common/bg-serv.jpg');
   background-repeat: repeat;
 }
 
@@ -389,7 +393,7 @@ h1.title.border:hover:after{
 
 /* Depoimentos - Home */
 #bloco-depoimentos{
-  background-image: url('../img/common/bg-serv.png');
+  background-image: url('../img/common/bg-serv.jpg');
   background-repeat: repeat;
 }
 
@@ -460,7 +464,7 @@ h1.title.border:hover:after{
   color: #FFF;
 }
 
-#bloco-contato h1{
+#bloco-contato h2{
   font-size: 2em;
   margin-top: 15px;
 }
@@ -484,12 +488,12 @@ h1.title.border:hover:after{
 
 /* Footer - Site */
 #site-footer #mapa-site{
-  background-image: url('../img/common/bg-footer.png');
+  background-image: url('../img/common/bg-footer.jpg');
   background-repeat: repeat;
   padding: 65px 0;
 }
 
-#site-footer #mapa-site h1{
+#site-footer #mapa-site h2{
   font-size: 1.1em;
   color: #8a8f8f;
   text-transform: uppercase;
@@ -547,7 +551,7 @@ h1.title.border:hover:after{
 /* Geral */
 
 #topo-interna{
-  background-image: url("../img/common/bg-serv.png");
+  background-image: url("../img/common/bg-serv.jpg");
   background-repeat: repeat;
   padding-top: 30px;
 }
@@ -562,7 +566,7 @@ h1.title.border:hover:after{
   margin-right: 30px;
 }
 
-#topo-interna h1{
+#topo-interna h1, #topo-interna h2{
   font-family: 'open_sansbold';
   text-transform: uppercase;
   font-size: 2.55em;
@@ -905,6 +909,10 @@ p span.subtit{
 }
 
 /* Treinamento Detalhes */
+.bloco-treinamento-detalhes h2.title.ac.border{
+  color: #8a8f8f;
+}
+
 .bloco-treinamento-detalhes h2{
   font-size: 1.2em;
   color: #2870ad;

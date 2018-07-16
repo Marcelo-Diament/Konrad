@@ -71,7 +71,7 @@
 	<div class="txt-interna bloco-home border">
 		<div class="grid-container">
 			<div class="grid-100">
-				<h1 class="title ac border"><b><?php echo $bloco['titulo']; ?></b></h1>
+				<h2 class="title ac border"><b><?php echo $bloco['titulo']; ?></b></h2>
 			</div>
 			<div class="grid-100">
 				<?php echo $bloco['descricao']; ?>
@@ -89,7 +89,7 @@
 	<div class="txt-interna bloco-home border">
 		<div class="grid-container">
 			<div class="grid-100">
-				<h1 class="title ac border"><b><?php echo $bloco['titulo']; ?></b></h1>
+				<h2 class="title ac border"><b><?php echo $bloco['titulo']; ?></b></h2>
 			</div>
 			<div class="grid-50">
 				<?php echo $bloco['descricao']; ?>
@@ -123,7 +123,7 @@
 	<div class="txt-interna bloco-home border">
 		<div class="grid-container">
 			<div class="grid-100">
-				<h1 class="title ac border"><b>Treinamentos</b></h1>
+				<h2 class="title ac border"><b>Treinamentos</b></h2>
 			</div>
 		</div>
 	</div>

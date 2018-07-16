@@ -1,7 +1,7 @@
 <div id="bloco-depoimentos" class="bloco-home">
 	<div class="grid-container">
 		<div class="grid-100">
-			<h1 class="titulo"><a href="<?php local(); ?>depoimentos/">O que nossos <b>clientes</b> dizem</a></h1>
+			<h2 class="titulo"><a href="<?php local(); ?>depoimentos/">O que nossos <b>clientes</b> dizem</a></h2>
 		</div>
 		
 		

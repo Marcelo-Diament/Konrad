@@ -52,7 +52,7 @@
 	<div id="conteudo-clientes" class="txt-interna bloco-home">
 		<div class="grid-container">
 			<div class="grid-100">
-				<h1 class="title ac border"><b>Obrigado</b></h1>
+				<h2 class="title ac border"><b>Obrigado</b></h2>
 			</div>
 			<div class="grid-100">
 				<p class="ac">Sua inscrição foi enviada, retornaremos assim que possível.</p>
